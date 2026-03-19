@@ -13,27 +13,36 @@ export default function EngineeringNotes({ notes, showAll = false }: Engineering
   const displayNotes = showAll ? notes : notes.slice(0, 3);
 
   return (
-    <section id="notes" className="py-20 md:py-28 bg-[#111827]">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="notes" className="relative overflow-hidden bg-[#070f1f] py-20 md:py-28">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(56,189,248,0.12),transparent_36%),radial-gradient(circle_at_85%_12%,rgba(99,102,241,0.15),transparent_34%),linear-gradient(180deg,#070f1f_0%,#0d1a35_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.04)_1px,transparent_1px)] bg-size-[72px_72px] opacity-30" />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5 }}
-          className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-4"
+          className="mb-16 flex flex-col gap-5 md:flex-row md:items-end md:justify-between"
         >
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#f8fafc] mb-4 tracking-tight">
+            <p className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-[#93c5fd] backdrop-blur-xl">
+              Engineering Journal
+            </p>
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-[#f8fafc] md:text-4xl">
               Engineering Notes
             </h2>
-            <p className="text-lg text-[#94a3b8] max-w-2xl">
-              Technical insights and lessons from building real systems.
+            <p className="max-w-3xl text-lg leading-relaxed text-[#cbd5e1]">
+              Practical field notes from shipping production software, debugging edge cases,
+              and designing systems that stay reliable under pressure.
             </p>
           </div>
           {!showAll && (
             <Link
               href="/notes"
-              className="inline-flex items-center gap-2 text-[#6366f1] hover:text-[#818cf8] transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-2.5 text-sm font-medium text-[#e2e8f0] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/15"
             >
               View all notes
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
@@ -43,7 +52,7 @@ export default function EngineeringNotes({ notes, showAll = false }: Engineering
           )}
         </motion.div>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {displayNotes.map((note, index) => (
             <motion.div
               key={note.slug}
@@ -53,22 +62,30 @@ export default function EngineeringNotes({ notes, showAll = false }: Engineering
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Link href={`/notes/${note.slug}`}>
-                <article className="group bg-[#0f172a] rounded-xl p-6 border border-[#334155]/50 hover:border-[#6366f1]/30 transition-all duration-300">
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                <article className="group relative overflow-hidden rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:shadow-[0_18px_50px_rgba(15,23,42,0.4)] md:p-7">
+                  <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <div className="absolute inset-0 bg-linear-to-br from-[#38bdf8]/12 via-[#6366f1]/12 to-[#22c55e]/10" />
+                  </div>
+
+                  <div className="relative z-10 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="px-2 py-1 text-xs font-medium bg-[#6366f1]/20 text-[#6366f1] rounded">
+                      <div className="mb-3 flex flex-wrap items-center gap-3">
+                        <span className="rounded-md border border-sky-300/40 bg-sky-300/15 px-2.5 py-1 text-xs font-medium text-sky-100">
                           {note.category}
                         </span>
-                        <span className="text-xs text-[#64748b]">{note.readTime}</span>
+                        <span className="text-xs text-[#94a3b8]">{note.readTime}</span>
+                        <span className="text-xs text-[#64748b]">{note.date}</span>
                       </div>
-                      <h3 className="text-lg font-semibold text-[#f8fafc] group-hover:text-[#6366f1] transition-colors mb-2">
+
+                      <h3 className="mb-2 text-lg font-semibold text-[#f8fafc] transition-colors group-hover:text-[#93c5fd] md:text-xl">
                         {note.title}
                       </h3>
-                      <p className="text-sm text-[#94a3b8]">
+
+                      <p className="text-sm leading-relaxed text-[#cbd5e1]">
                         {note.excerpt}
                       </p>
                     </div>
+
                     <motion.svg
                       whileHover={{ x: 4, y: -4 }}
                       width="20"
@@ -77,7 +94,7 @@ export default function EngineeringNotes({ notes, showAll = false }: Engineering
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="1.5"
-                      className="text-[#64748b] group-hover:text-[#6366f1] flex-shrink-0"
+                      className="shrink-0 text-[#94a3b8] group-hover:text-[#93c5fd]"
                     >
                       <path d="M6 14l8-8m0 0l-8-8m8 8H3" />
                     </motion.svg>

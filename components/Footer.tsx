@@ -10,45 +10,65 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#334155]/50 bg-[#0f172a]">
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-6">
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#64748b] hover:text-[#f8fafc] transition-colors duration-200"
-                aria-label={link.label}
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d={link.icon} />
-                </svg>
-              </a>
-            ))}
+    <footer className="relative overflow-hidden border-t border-white/10 bg-[#040b18]">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(56,189,248,0.14),transparent_35%),radial-gradient(circle_at_85%_80%,rgba(99,102,241,0.14),transparent_35%),linear-gradient(180deg,#040b18_0%,#081327_100%)]" />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-6 py-14">
+        <div className="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl md:p-8">
+          <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="mb-3 inline-flex rounded-full border border-white/20 bg-[#0f172a]/40 px-3 py-1 text-xs uppercase tracking-[0.14em] text-[#93c5fd]">
+                Musa Alfian
+              </p>
+              <p className="max-w-xl text-sm leading-relaxed text-[#cbd5e1] md:text-base">
+                Fullstack engineer focused on reliable delivery, thoughtful architecture,
+                and real product outcomes in React, Next.js, and Laravel environments.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 bg-[#0f172a]/60 text-[#cbd5e1] transition-all duration-200 hover:-translate-y-0.5 hover:border-white/35 hover:text-white"
+                  aria-label={link.label}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d={link.icon} />
+                  </svg>
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div className="text-sm text-[#64748b] text-center md:text-right">
-            <p>&copy; {new Date().getFullYear()} Musa Alfian. Built with engineering thinking.</p>
+          <div className="flex flex-col gap-4 border-t border-white/15 pt-6 md:flex-row md:items-center md:justify-between">
+            <Link
+              href="/build-log"
+              className="inline-flex w-fit items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-4 py-2 text-sm text-[#e2e8f0] transition-all duration-200 hover:bg-white/10"
+            >
+              View Build Log
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
+            </Link>
+
+            <div className="flex items-center gap-2 text-sm text-[#94a3b8]">
+              <span>Next.js</span>
+              <span className="text-[#475569]">•</span>
+              <span>Tailwind CSS</span>
+              <span className="text-[#475569]">•</span>
+              <span>Framer Motion</span>
+            </div>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-[#334155]/30 flex flex-col md:flex-row items-center justify-between gap-4">
-          <Link 
-            href="/build-log" 
-            className="text-sm text-[#64748b] hover:text-[#6366f1] transition-colors duration-200"
-          >
-            View Build Log
-          </Link>
-          <div className="flex items-center gap-2 text-sm text-[#64748b]">
-            <span>Next.js</span>
-            <span className="text-[#334155]">•</span>
-            <span>Tailwind CSS</span>
-            <span className="text-[#334155]">•</span>
-            <span>Framer Motion</span>
-          </div>
+        <div className="mt-6 text-center text-sm text-[#64748b] md:text-right">
+          <p>&copy; {new Date().getFullYear()} Musa Alfian. Built with engineering thinking.</p>
         </div>
       </div>
     </footer>

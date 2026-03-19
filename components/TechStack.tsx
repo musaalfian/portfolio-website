@@ -31,8 +31,12 @@ const technologies = [
 
 export default function TechStack() {
   return (
-    <section id="stack" className="py-20 md:py-28">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="stack" className="relative overflow-hidden bg-[#050d1b] py-20 md:py-28">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_20%,rgba(52,211,153,0.12),transparent_35%),radial-gradient(circle_at_78%_80%,rgba(56,189,248,0.12),transparent_35%),linear-gradient(180deg,#050d1b_0%,#0b172f_100%)]" />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -40,15 +44,18 @@ export default function TechStack() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#f8fafc] mb-4 tracking-tight">
+          <p className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-[#6ee7b7] backdrop-blur-xl">
+            Technical Foundation
+          </p>
+          <h2 className="mb-4 text-3xl font-bold tracking-tight text-[#f8fafc] md:text-4xl">
             Technology Stack
           </h2>
-          <p className="text-lg text-[#94a3b8] max-w-2xl">
+          <p className="max-w-3xl text-lg leading-relaxed text-[#cbd5e1]">
             Tools I use to build reliable, scalable systems.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {technologies.map((tech, index) => (
             <motion.div
               key={tech.name}
@@ -56,13 +63,18 @@ export default function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#1e293b] rounded-xl p-6 border border-[#334155]/50 hover:border-[#6366f1]/30 transition-all duration-300"
+              className="group rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_55px_rgba(15,23,42,0.45)]"
             >
-              <h3 className="text-lg font-semibold text-[#f8fafc] mb-3 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#6366f1]" />
+              <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-[#f8fafc]">
+                <span className="h-2.5 w-2.5 rounded-full bg-linear-to-r from-[#38bdf8] to-[#22c55e]" />
                 {tech.name}
               </h3>
-              <p className="text-sm text-[#94a3b8] leading-relaxed">
+
+              <div className="mb-4 h-1.5 overflow-hidden rounded-full bg-[#0f172a]">
+                <div className="h-full w-3/4 rounded-full bg-linear-to-r from-[#38bdf8] via-[#6366f1] to-[#22c55e]" />
+              </div>
+
+              <p className="text-sm leading-relaxed text-[#cbd5e1]">
                 {tech.description}
               </p>
             </motion.div>

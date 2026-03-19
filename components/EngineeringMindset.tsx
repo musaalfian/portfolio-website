@@ -25,10 +25,22 @@ const principles = [
   },
 ];
 
+const accentGradients = [
+  'from-[#38bdf8] via-[#6366f1] to-[#22c55e]',
+  'from-[#6366f1] via-[#0ea5e9] to-[#34d399]',
+  'from-[#34d399] via-[#6366f1] to-[#38bdf8]',
+  'from-[#0ea5e9] via-[#4f46e5] to-[#22c55e]',
+];
+
 export default function EngineeringMindset() {
   return (
-    <section className="py-20 md:py-28 bg-[#111827]">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="relative overflow-hidden bg-[#070f20] py-20 md:py-28">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(56,189,248,0.14),transparent_40%),radial-gradient(circle_at_80%_12%,rgba(99,102,241,0.16),transparent_36%),linear-gradient(180deg,#070f20_0%,#0c162d_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.04)_1px,transparent_1px)] bg-size-[64px_64px] opacity-30" />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -36,15 +48,19 @@ export default function EngineeringMindset() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#f8fafc] mb-4 tracking-tight">
+          <p className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-[#7dd3fc] backdrop-blur-xl">
+            Engineering Philosophy
+          </p>
+          <h2 className="mb-4 text-3xl font-bold tracking-tight text-[#f8fafc] md:text-4xl">
             How I Build Software
           </h2>
-          <p className="text-lg text-[#94a3b8] max-w-2xl">
-            A principled approach to solving real-world problems through software.
+          <p className="max-w-3xl text-lg leading-relaxed text-[#cbd5e1]">
+            A disciplined engineering process designed for reliable delivery, clean architecture,
+            and systems that stay maintainable as products scale.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid gap-6 md:grid-cols-2">
           {principles.map((principle, index) => (
             <motion.div
               key={principle.title}
@@ -52,16 +68,20 @@ export default function EngineeringMindset() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative bg-[#0f172a] rounded-xl p-6 border border-[#334155]/50 hover:border-[#6366f1]/30 transition-all duration-300"
+              className="group relative overflow-hidden rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_60px_rgba(8,47,73,0.35)]"
             >
+              <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className={`absolute inset-0 bg-linear-to-br ${accentGradients[index]} opacity-10`} />
+              </div>
+
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#1e293b] flex items-center justify-center group-hover:bg-[#6366f1]/20 transition-colors">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/20 bg-[#0f172a]/70 transition-colors group-hover:border-[#7dd3fc]/45 group-hover:bg-[#172554]/70">
                   <svg
                     width="20"
                     height="20"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#6366f1"
+                    stroke="#7dd3fc"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -69,11 +89,15 @@ export default function EngineeringMindset() {
                     <path d={principle.icon} />
                   </svg>
                 </div>
+
                 <div>
-                  <h3 className="text-lg font-semibold text-[#f8fafc] mb-2">
+                  <p className="mb-2 font-mono text-xs uppercase tracking-[0.14em] text-[#94a3b8]">
+                    0{index + 1}
+                  </p>
+                  <h3 className="mb-2 text-lg font-semibold text-[#f8fafc] md:text-xl">
                     {principle.title}
                   </h3>
-                  <p className="text-[#94a3b8] leading-relaxed">
+                  <p className="leading-relaxed text-[#cbd5e1]">
                     {principle.description}
                   </p>
                 </div>
