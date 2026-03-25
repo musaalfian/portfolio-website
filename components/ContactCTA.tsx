@@ -25,10 +25,12 @@ const socialLinks = [
 
 export default function ContactCTA() {
   return (
-    <section id="contact" className="relative overflow-hidden bg-[#060d1d] py-20 md:py-28">
+    <section id="contact" className="relative overflow-hidden bg-[#050b18]/80 py-20 md:py-28">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(56,189,248,0.14),transparent_36%),radial-gradient(circle_at_85%_85%,rgba(34,197,94,0.14),transparent_36%),linear-gradient(180deg,#060d1d_0%,#0d1b36_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(56,189,248,0.1),transparent_36%),radial-gradient(circle_at_85%_85%,rgba(34,197,94,0.1),transparent_36%),linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(30,64,175,0.14)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.04)_1px,transparent_1px)] bg-size-[80px_80px] opacity-30" />
+        <div className="absolute inset-x-0 top-0 h-20 bg-linear-to-b from-[#050b18]/78 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-b from-transparent to-[#040b18]/72" />
       </div>
 
       <div className="relative mx-auto max-w-5xl px-6">
@@ -52,12 +54,15 @@ export default function ContactCTA() {
 
           <a
             href="mailto:hello@example.com"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-[#38bdf8] via-[#6366f1] to-[#22c55e] px-6 py-3 font-medium text-white shadow-[0_10px_35px_rgba(56,189,248,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(99,102,241,0.38)]"
+            className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl border border-[#bfdbfe]/25 bg-linear-to-r from-[#1e3a8a]/85 to-[#0f766e]/75 px-6 py-3 font-medium text-white shadow-[0_12px_36px_rgba(15,23,42,0.45)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/35 hover:shadow-[0_16px_44px_rgba(30,58,138,0.45)]"
           >
-            Start a Conversation
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M3 8h10M9 4l4 4-4 4" />
-            </svg>
+            <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(118deg,rgba(255,255,255,0.26)_0%,rgba(255,255,255,0.08)_42%,transparent_72%)] opacity-75 transition-opacity duration-300 group-hover:opacity-100" />
+            <span className="relative z-10 inline-flex items-center gap-2">
+              Start a Conversation
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
+            </span>
           </a>
         </motion.div>
 

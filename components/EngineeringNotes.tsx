@@ -13,10 +13,12 @@ export default function EngineeringNotes({ notes, showAll = false }: Engineering
   const displayNotes = showAll ? notes : notes.slice(0, 3);
 
   return (
-    <section id="notes" className="relative overflow-hidden bg-[#070f1f] py-20 md:py-28">
+    <section id="notes" className="relative overflow-hidden bg-[#050b18]/80 py-20 md:py-28">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(56,189,248,0.12),transparent_36%),radial-gradient(circle_at_85%_12%,rgba(99,102,241,0.15),transparent_34%),linear-gradient(180deg,#070f1f_0%,#0d1a35_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(56,189,248,0.1),transparent_36%),radial-gradient(circle_at_85%_12%,rgba(99,102,241,0.11),transparent_34%),linear-gradient(180deg,rgba(30,58,138,0.09)_0%,rgba(5,11,24,0.65)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.04)_1px,transparent_1px)] bg-size-[72px_72px] opacity-30" />
+        <div className="absolute inset-x-0 top-0 h-20 bg-linear-to-b from-[#050b18]/78 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-b from-transparent to-[#050b18]/78" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6">

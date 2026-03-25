@@ -34,11 +34,13 @@ const accentGradients = [
 
 export default function EngineeringMindset() {
   return (
-    <section className="relative overflow-hidden bg-[#070f20] py-20 md:py-28">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(56,189,248,0.14),transparent_40%),radial-gradient(circle_at_80%_12%,rgba(99,102,241,0.16),transparent_36%),linear-gradient(180deg,#070f20_0%,#0c162d_100%)]" />
+    <section className="relative overflow-hidden py-20 md:py-28 bg-[#050b18]/80">
+      {/* <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(56,189,248,0.12),transparent_40%),radial-gradient(circle_at_80%_12%,rgba(99,102,241,0.13),transparent_36%),linear-gradient(180deg,rgba(8,47,73,0.08)_0%,rgba(15,23,42,0.2)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.04)_1px,transparent_1px)] bg-size-[64px_64px] opacity-30" />
-      </div>
+        <div className="absolute inset-x-0 top-0 h-20 bg-linear-to-b from-[#050d1d]/70 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-b from-transparent to-[#050d1d]/60" />
+      </div> */}
 
       <div className="relative mx-auto max-w-6xl px-6">
         <motion.div

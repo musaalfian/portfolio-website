@@ -10,9 +10,10 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-[#040b18]">
+    <footer className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(56,189,248,0.14),transparent_35%),radial-gradient(circle_at_85%_80%,rgba(99,102,241,0.14),transparent_35%),linear-gradient(180deg,#040b18_0%,#081327_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(56,189,248,0.13),transparent_35%),radial-gradient(circle_at_85%_80%,rgba(99,102,241,0.12),transparent_35%),linear-gradient(180deg,#040b18_0%,#081327_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-20 bg-linear-to-b from-[#040b18]/20 to-transparent" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6 py-14">

@@ -27,9 +27,11 @@ const learningTopics = [
 
 export default function LearningProgress() {
   return (
-    <section className="relative overflow-hidden bg-[#050d1b] py-20 md:py-28">
+    <section className="relative overflow-hidden bg-[#050b18]/80 py-20 md:py-28">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,189,248,0.12),transparent_36%),radial-gradient(circle_at_80%_80%,rgba(34,197,94,0.1),transparent_36%),linear-gradient(180deg,#050d1b_0%,#0a162b_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,189,248,0.1),transparent_36%),radial-gradient(circle_at_80%_80%,rgba(34,197,94,0.09),transparent_36%),linear-gradient(180deg,rgba(15,23,42,0.08)_0%,rgba(5,11,24,0.65)_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-20 bg-linear-to-b from-[#050b18]/78 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-b from-transparent to-[#050b18]/78" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6">

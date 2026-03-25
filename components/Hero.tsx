@@ -28,13 +28,14 @@ const itemVariants = {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#060c1a]">
+    <section className="relative min-h-screen overflow-hidden bg-[#050b18]">
       {/* Layered premium background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,189,248,0.12),transparent_35%),radial-gradient(circle_at_85%_25%,rgba(99,102,241,0.18),transparent_38%),radial-gradient(circle_at_70%_75%,rgba(16,185,129,0.14),transparent_32%),linear-gradient(145deg,#020617_0%,#0b1226_42%,#101a34_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,189,248,0.12),transparent_35%),radial-gradient(circle_at_85%_25%,rgba(99,102,241,0.16),transparent_38%),radial-gradient(circle_at_70%_75%,rgba(16,185,129,0.12),transparent_32%),linear-gradient(145deg,#020617_0%,#0a1225_42%,#0e1a35_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.05)_1px,transparent_1px)] bg-size-[72px_72px] opacity-25" />
         <div className="absolute -top-24 left-[18%] h-72 w-72 rounded-full bg-[#38bdf8]/20 blur-[120px]" />
         <div className="absolute -bottom-32 right-[10%] h-96 w-96 rounded-full bg-[#6366f1]/20 blur-[140px]" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-b from-transparent to-[#050d1d]" />
       </div>
 
       <div className="relative z-10 mx-auto grid min-h-screen w-full max-w-6xl items-center gap-12 px-6 py-28 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
@@ -76,12 +77,15 @@ export default function Hero() {
           >
             <Link
               href="#work"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-[#38bdf8] via-[#6366f1] to-[#22c55e] px-6 py-3 font-medium text-white shadow-[0_10px_35px_rgba(56,189,248,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(99,102,241,0.35)]"
+              className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl border border-[#bfdbfe]/25 bg-linear-to-r from-[#1e3a8a]/85 to-[#0f766e]/75 px-6 py-3 font-medium text-white shadow-[0_12px_36px_rgba(15,23,42,0.45)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/35 hover:shadow-[0_16px_44px_rgba(30,58,138,0.45)]"
             >
-              View My Work
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 8h10M9 4l4 4-4 4" />
-              </svg>
+              <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(118deg,rgba(255,255,255,0.26)_0%,rgba(255,255,255,0.08)_42%,transparent_72%)] opacity-75 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="relative z-10 inline-flex items-center gap-2">
+                View My Work
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </span>
             </Link>
 
             <Link
@@ -144,21 +148,23 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator with icon */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
+         <motion.div
+         animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
-          className="flex h-10 w-6 justify-center rounded-full border-2 border-white/30 pt-2"
-        >
-          <div className="h-2 w-1 rounded-full bg-[#cbd5e1]" />
-        </motion.div>
-      </motion.div>
+         >
+         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+           <path d="M12 5v14M19 12l-7 7-7-7" />
+         </svg>
+         </motion.div>
+       </motion.div>
+    
     </section>
   );
 }
