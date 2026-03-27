@@ -1,163 +1,306 @@
 export interface Project {
-  slug: string;
-  title: string;
-  subtitle: string;
-  problem: string;
-  solution: string;
-  impact: string;
-  tech: string[];
-  duration: string;
-  role: string;
-  overview: string;
-  constraints: string[];
-  architecture: string;
-  technicalDecisions: { title: string; description: string }[];
-  implementationHighlights: string[];
-  challenges: { challenge: string; solution: string }[];
-  lessonsLearned: string[];
+  image: string
+  slug: string
+  title: string
+  subtitle: string
+  problem: string
+  solution: string
+  impact: string
+  tech: string[]
+  duration: string
+  role: string
+  overview: string
+  constraints: string[]
+  architecture: string
+  technicalDecisions: { title: string; description: string }[]
+  implementationHighlights: string[]
+  challenges: { challenge: string; solution: string }[]
+  lessonsLearned: string[]
 }
 
 export interface Note {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  readTime: string;
-  date: string;
-  content: string;
+  slug: string
+  title: string
+  excerpt: string
+  category: string
+  readTime: string
+  date: string
+  content: string
 }
 
 export const projects: Project[] = [
   {
-    slug: 'hospital-management-system',
-    title: 'Hospital Management System',
-    subtitle: 'Integrated digital platform for healthcare operations',
-    problem: 'Manual patient data handling causing significant delays, frequent errors in medical records, and inefficient communication between departments leading to compromised patient care.',
-    solution: 'Built a comprehensive digital platform with real-time patient tracking, electronic medical records, appointment scheduling, and inter-department communication system.',
-    impact: '60% reduction in patient processing time, 95% reduction in record errors, improved department coordination',
-    tech: ['Laravel', 'PostgreSQL', 'React', 'Docker', 'Redis'],
-    duration: '8 months',
+    image: '/img/simas.png',
+    slug: 'simas-v2',
+    title: 'SIMAS v2.0',
+    subtitle: 'Sistem Informasi Manajemen Administrasi Surat lintas unit',
+    problem:
+      'Proses persuratan sebelumnya tersebar di banyak alur manual: registrasi surat masuk, pengajuan surat keluar, disposisi, dan approval berjenjang belum terintegrasi. Dampaknya adalah keterlambatan tindak lanjut, minimnya visibilitas status, serta tingginya risiko inkonsistensi data antar unit.',
+    solution:
+      'Membangun platform persuratan terintegrasi berbasis web yang mengelola siklus surat end-to-end: registrasi surat masuk internal/eksternal, pengajuan surat keluar, approval multi-level, disposisi berantai, tembusan, notifikasi, tracking status, hingga pengarsipan dokumen final.',
+    impact:
+      'Alur kerja persuratan menjadi terstandar di seluruh unit, transparansi proses meningkat melalui pelacakan status real-time, serta kepatuhan operasional diperkuat dengan audit trail dan monitoring SLA disposisi/dokumen.',
+    tech: ['Laravel 11', 'PHP 8.2', 'MySQL', 'Tailwind CSS', 'jQuery'],
+    duration: 'Transformasi v2.0 (2025-2026)',
     role: 'Lead Fullstack Engineer',
-    overview: 'A comprehensive hospital management system designed to digitize and streamline all healthcare operations. The system handles patient registration, appointment scheduling, medical records, billing, and real-time department communication.',
+    overview:
+      'SIMAS v2.0 adalah platform manajemen persuratan institusi yang dirancang untuk mendukung kebutuhan fakultas dan unit kerja (departemen, program studi, bagian, laboratorium, dan unit lainnya). Sistem menekankan kecepatan proses, akuntabilitas, serta konsistensi administrasi pada skala organisasi multi-unit.',
     constraints: [
-      'Must comply with healthcare data privacy regulations',
-      'System must handle 500+ concurrent users during peak hours',
-      'Zero tolerance for data loss - critical medical information',
-      'Must work reliably on slow network connections'
+      'Harus mendukung multi-role dan multi-unit dalam satu akun pengguna',
+      'Migrasi dari skema legacy ke arsitektur baru wajib aman tanpa gangguan layanan signifikan',
+      'Otorisasi harus ketat berbasis konteks peran, jabatan, dan unit aktif',
+      'Sistem harus tetap responsif pada kondisi jaringan yang tidak selalu stabil',
     ],
-    architecture: 'The system uses a microservices architecture with Laravel-based backend services. The frontend is built with React and communicates via RESTful APIs. PostgreSQL serves as the primary database with Redis for caching and session management. Docker containerization ensures consistent deployment across environments.',
+    architecture:
+      'Arsitektur menggunakan pendekatan modular monolith di Laravel dengan pemisahan Service Layer, Repository, Event, dan Notification. Model data transisional menggabungkan tabel legacy dan model canonical baru (surat_generals + pivot unit) untuk mendukung migrasi bertahap. Caching dan indexing digunakan untuk akselerasi dashboard, sementara notifikasi dan workflow status dijalankan berbasis event domain.',
     technicalDecisions: [
-      { title: 'Event-driven architecture', description: 'Implemented event sourcing for medical records to maintain complete audit trail and enable complex reporting without impacting primary write operations.' },
-      { title: 'Optimistic locking', description: 'Used optimistic locking with version fields to prevent concurrent edit conflicts in medical records, ensuring data integrity without sacrificing performance.' },
-      { title: 'Read replicas', description: 'Separated read and write operations using database replicas to handle high read-load from multiple departments without blocking writes.' }
+      {
+        title: 'Canonical letter model for multi-unit flow',
+        description:
+          'Mengadopsi model surat canonical dengan relasi pivot per unit penerima agar distribusi surat, status baca, dan status tindak lanjut dapat dilacak secara granular.',
+      },
+      {
+        title: 'Safe staged migration strategy',
+        description:
+          'Menerapkan tahapan additive schema, backfill terukur, dan cutover bertahap agar kompatibilitas data lama tetap terjaga selama transisi v1 ke v2.',
+      },
+      {
+        title: 'Context-aware RBAC and workflow',
+        description:
+          'Merancang otorisasi berbasis peran + unit aktif untuk memastikan hak akses, approval chain, dan disposisi hanya berjalan pada konteks organisasi yang benar.',
+      },
     ],
     implementationHighlights: [
-      'Built custom RBAC system with role-specific permissions for doctors, nurses, admins, and front desk staff',
-      'Implemented real-time notifications using WebSocket for urgent lab results and emergency alerts',
-      'Created automated backup system with point-in-time recovery capability',
-      'Designed offline-first mobile responsive interface for staff working in low-connectivity areas'
+      'Mengimplementasikan alur surat masuk dan surat keluar terintegrasi dengan status tracking end-to-end',
+      'Membangun approval berjenjang (setuju/revisi/tolak) dan tugas upload dokumen final untuk sekretaris/pihak terkait',
+      'Menerapkan disposisi polymorphic dengan dukungan teruskan, tanggapan, lampiran output, dan penyelesaian proses',
+      'Menghadirkan sistem notifikasi terpusat (dropdown, halaman notifikasi, read state, dan SLA monitoring) untuk mendorong ketepatan tindak lanjut',
     ],
     challenges: [
-      { challenge: 'Complex permission requirements', solution: 'Designed a hierarchical permission system that supports role inheritance and contextual access control based on department and patient assignment.' },
-      { challenge: 'Data migration from legacy systems', solution: 'Built a custom ETL pipeline with validation rules and fuzzy matching to handle inconsistent legacy data formats while maintaining data integrity.' },
-      { challenge: 'Performance under load', solution: 'Implemented aggressive caching strategy with cache invalidation on write, reducing database load by 70% during peak hours.' }
+      {
+        challenge: 'Kompleksitas struktur organisasi multi-level',
+        solution:
+          'Menormalkan entitas unit dan relasi user-unit agar alur persuratan tetap konsisten lintas fakultas, departemen, prodi, bagian, dan laboratorium.',
+      },
+      {
+        challenge: 'Koeksistensi data lama dan model baru',
+        solution:
+          'Menyusun mekanisme bridge dan backfill idempoten untuk menjaga parity data sekaligus meminimalkan risiko regresi selama migrasi.',
+      },
+      {
+        challenge: 'Risiko notifikasi duplikat dan status tidak sinkron',
+        solution:
+          'Menambahkan kunci deduplikasi, event handling terstruktur, serta pembaruan status berbasis trigger proses untuk menjaga konsistensi pengalaman pengguna.',
+      },
     ],
     lessonsLearned: [
-      'Healthcare systems require defensive programming - always validate and sanitize all inputs',
-      'Audit trails are not optional in medical software - they are a legal requirement',
-      'User training is as important as code quality - invested heavily in onboarding documentation',
-      'Performance testing must simulate real-world usage patterns, not just theoretical load'
-    ]
+      'Migrasi sistem operasional harus diperlakukan sebagai product change, bukan sekadar perubahan skema database',
+      'Dual-path compatibility (legacy + canonical) penting untuk menjaga stabilitas saat transisi skala besar',
+      'RBAC di domain persuratan wajib mempertimbangkan konteks unit aktif, bukan hanya role global',
+      'Dokumentasi pengguna dan dokumentasi teknis yang kuat mempercepat adopsi serta menurunkan friksi operasional',
+    ],
   },
   {
-    slug: 'elearning-platform',
-    title: 'E-Learning Platform',
-    subtitle: 'Scalable education platform with progress analytics',
-    problem: 'Inefficient course delivery, lack of student progress visibility, and manual assessment handling limiting the scalability of educational programs.',
-    solution: 'Developed a full-featured learning management system with video streaming, automated assessments, progress tracking, and real-time analytics dashboard.',
-    impact: '500+ active users, real-time sync across devices, 40% reduction in assessment grading time',
-    tech: ['Laravel', 'MySQL', 'Vue.js', 'AWS S3', 'CloudFront'],
-    duration: '6 months',
-    role: 'Fullstack Engineer',
-    overview: 'A modern e-learning platform enabling educators to create and deliver courses while providing students with an engaging learning experience. The platform supports video lessons, quizzes, assignments, and comprehensive progress tracking.',
-    constraints: [
-      'Must support video streaming for 1000+ simultaneous viewers',
-      'Offline access required for students in areas with poor connectivity',
-      'Assessment results must be secure and tamper-proof',
-      'Accessibility compliance required (WCAG 2.1 AA)'
+    image: '/img/sipeipe.png',
+    slug: 'sipeipe',
+    title: 'SIPEIPE',
+    subtitle:
+      'Sistem Informasi Penilaian Interprofessional Education berbasis web',
+    problem:
+      'Proses penilaian dan logbook sebelumnya tersebar di banyak alur terpisah: pencatatan aktivitas mahasiswa, self-assessment, peer assessment, penilaian dosen, serta evaluasi kelompok keluarga belum berada dalam satu sistem terintegrasi. Dampaknya adalah duplikasi input, sulitnya memantau progres lintas peran, validasi data yang memakan waktu, dan keterbatasan visibilitas performa per periode akademik.',
+    solution:
+      'Membangun platform SIPEIPE yang menyatukan siklus evaluasi pembelajaran secara end-to-end: manajemen periode akademik, pengelolaan pengguna massal via import Excel, generator akun keluarga, form penilaian berbasis template, form logbook berbasis kompetensi, workflow penilaian multi-role, dashboard analitik per peran, serta kontrol keamanan dan performa melalui rate limiting, caching, dan optimasi query.',
+    impact:
+      'Alur evaluasi menjadi terstandar untuk Admin, Dosen, Mahasiswa, dan Keluarga; transparansi meningkat melalui tracking status dan rekap terpusat; proses import ribuan pengguna menjadi lebih cepat dan terukur; serta performa dashboard meningkat signifikan melalui optimasi SQL, indeks komposit, dan asynchronous loading sehingga lebih stabil untuk skenario penggunaan tinggi.',
+    tech: [
+      'Laravel 12',
+      'PHP 8.2',
+      'MySQL',
+      'Tailwind CSS 4',
+      'Vite 7',
+      'jQuery',
+      'DataTables',
+      'PhpSpreadsheet',
+      'Laravel Queue',
+      'Redis-ready Caching',
     ],
-    architecture: 'Monolithic Laravel application with Vue.js SPA frontend. Video content served through AWS CloudFront CDN with S3 storage. MySQL database with Redis for session management. Background jobs handled by Laravel Queue with Redis.',
+    duration: 'Pengembangan dan Optimalisasi Platform (2025-2026)',
+    role: 'Lead Fullstack Engineer',
+    overview:
+      'SIPEIPE adalah platform evaluasi pendidikan interprofesional yang dirancang untuk mendukung operasional akademik berskala institusi. Sistem ini menekankan akurasi data penilaian, kemudahan operasional lintas peran, pengalaman pengguna yang responsif di desktop maupun mobile, serta kesiapan performa untuk beban pengguna tinggi.',
+    constraints: [
+      'Harus mendukung multi-role dengan hak akses berbeda (Admin, Dosen, Mahasiswa, Keluarga) dalam konteks periode akademik aktif',
+      'Validitas data wajib konsisten untuk penilaian individu, kelompok, self, dan peer tanpa duplikasi entri',
+      'Import pengguna skala besar harus aman, tervalidasi, dan memiliki progress tracking real-time',
+      'UI logbook wajib tetap usable di perangkat mobile dengan struktur pertanyaan berbasis kompetensi',
+      'Dashboard harus tetap responsif pada skenario ratusan pengguna concurrent',
+      'Sistem harus memiliki perlindungan abuse melalui rate limiting dan kontrol akses yang ketat',
+    ],
+    architecture:
+      'Arsitektur menggunakan modular monolith di Laravel dengan pemisahan domain berbasis route modules, service layer, observer, dan job queue. Strategi performa menerapkan SQL aggregation, composite indexing, multi-layer caching, serta asynchronous API loading untuk komponen dashboard. Proses impor data memanfaatkan chunk processing dan background jobs agar skalabel dan tahan timeout.',
     technicalDecisions: [
-      { title: 'Video transcoding pipeline', description: 'Implemented automated video transcoding to multiple qualities using FFmpeg, ensuring optimal playback across different bandwidths and devices.' },
-      { title: 'Progressive Web App', description: 'Built PWA features including service workers for offline course access, push notifications for course updates, and install prompt.' },
-      { title: 'Quiz anti-cheat system', description: 'Designed randomized question pools, time limits, and browser focus detection to maintain assessment integrity.' }
+      {
+        title: 'Template-driven assessment and logbook engine',
+        description:
+          'Menerapkan model template untuk form penilaian dan logbook agar instrumen evaluasi dapat dipakai ulang, di-versioning, dan di-deploy per periode tanpa mengganggu histori data.',
+      },
+      {
+        title: 'Async import pipeline with chunk jobs',
+        description:
+          'Menggunakan pipeline import berbasis queue dan chunk processing untuk memproses data pengguna dalam volume besar dengan progress tracking, validasi berlapis, dan error reporting yang jelas.',
+      },
+      {
+        title: 'Performance-first dashboard architecture',
+        description:
+          'Mengganti agregasi in-memory menjadi agregasi SQL, menambahkan indeks komposit, serta memisahkan initial render dan background loading untuk menjaga waktu respons tetap cepat.',
+      },
+      {
+        title: 'Layered protection with named rate limiters',
+        description:
+          'Menerapkan limiter terpisah untuk login, form submission, upload, export, dan route umum sehingga sistem tetap aman tanpa mengorbankan kenyamanan penggunaan normal.',
+      },
     ],
     implementationHighlights: [
-      'Created drag-and-drop course builder for instructors',
-      'Built real-time progress dashboard with WebSocket updates',
-      'Implemented certificate generation with QR verification',
-      'Designed adaptive quiz difficulty based on student performance'
+      'Membangun alur penilaian lengkap untuk skenario individu, kelompok, self-assessment, dan peer assessment dengan kontrol satu entri per kombinasi penilai-subjek-form',
+      'Mengembangkan modul logbook berbasis pertanyaan dan kompetensi, termasuk tampilan adaptif mobile berbasis kartu agar pengisian tetap nyaman di ponsel',
+      'Mengimplementasikan manajemen periode akademik sebagai konteks utama seluruh data penilaian, logbook, dan kelompok',
+      'Menyediakan import pengguna berbasis Excel dengan preview DataTables, validasi rinci, background processing, dan progress monitoring real-time',
+      'Mengoptimalkan dashboard melalui caching, observer-based cache invalidation, endpoint async, dan skeleton loading untuk perceived performance lebih baik',
+      'Menerapkan kebijakan rate limiting terstruktur untuk perlindungan brute force, spam, dan abuse pada endpoint kritikal',
     ],
     challenges: [
-      { challenge: 'Video buffering issues', solution: 'Implemented HLS streaming with quality adaptation based on network conditions, reducing buffer time by 80%.' },
-      { challenge: 'Database performance with analytics', solution: 'Created materialized views for common analytics queries, improving dashboard load time from 5s to under 500ms.' },
-      { challenge: 'Offline functionality', solution: 'Built service worker with IndexedDB to cache course content for offline viewing with automatic sync when online.' }
+      {
+        challenge: 'Kompleksitas rule evaluasi lintas peran dalam satu sistem',
+        solution:
+          'Merancang workflow berbasis tipe penilaian dan konteks role agar setiap pengguna hanya melihat serta mengisi instrumen yang relevan sesuai kewenangannya.',
+      },
+      {
+        challenge: 'Kinerja dashboard menurun pada beban concurrent tinggi',
+        solution:
+          'Melakukan refactor query ke SQL aggregation, menambahkan indeks komposit, serta menerapkan caching dan async loading untuk menurunkan query count dan latensi.',
+      },
+      {
+        challenge:
+          'Import data pengguna volume besar rentan timeout dan error validasi',
+        solution:
+          'Menerapkan chunked queue jobs, validasi pre-import pada halaman preview, dan progress page dengan statistik sukses-gagal agar proses lebih andal dan mudah diawasi.',
+      },
+      {
+        challenge:
+          'Menjaga keamanan endpoint tanpa menghambat penggunaan harian',
+        solution:
+          'Mendefinisikan limiter per kategori operasi dengan ambang batas berbeda untuk authenticated dan guest, disertai pesan throttle yang informatif.',
+      },
     ],
     lessonsLearned: [
-      'PWA technology is mature enough for production educational apps',
-      'Analytics queries can kill database performance - pre-compute what you can',
-      'Video is deceptively complex - invest in proper infrastructure early',
-      'User feedback loops are essential for educational platform success'
-    ]
+      'Sistem evaluasi akademik harus dirancang sebagai workflow product, bukan sekadar CRUD data',
+      'Template dan versioning instrumen adalah fondasi penting untuk menjaga fleksibilitas sekaligus konsistensi penilaian',
+      'Optimasi performa paling efektif dimulai dari desain query, indeks, dan strategi cache, bukan hanya upgrade infrastruktur',
+      'Background job dan progress observability sangat krusial untuk fitur import data skala besar',
+      'Keamanan aplikasi terbaik dicapai dengan pendekatan berlapis: authorization, rate limiting, dan monitoring operasional',
+      'Dokumentasi pengguna yang jelas mempercepat adopsi sistem lintas peran secara signifikan',
+    ],
   },
   {
-    slug: 'inventory-management-system',
-    title: 'Inventory Management System',
-    subtitle: 'Real-time inventory tracking with predictive analytics',
-    problem: 'Stock visibility issues causing frequent overstock situations and product shortages, leading to wasted capital and lost sales.',
-    solution: 'Created a comprehensive inventory system with real-time tracking, automated reorder alerts, barcode scanning, and demand forecasting.',
-    impact: '40% reduction in stock discrepancies, 30% decrease in carrying costs, 25% improvement in order fulfillment',
-    tech: ['Laravel', 'PostgreSQL', 'React Native', 'REST API', 'Docker'],
-    duration: '5 months',
-    role: 'Lead Backend Engineer',
-    overview: 'A warehouse and inventory management system designed to provide real-time stock visibility across multiple locations. The system integrates with POS systems, handles barcode/QR scanning, and provides predictive analytics for demand forecasting.',
-    constraints: [
-      'Must work in offline mode for warehouse staff without network access',
-      'Real-time sync required across 5 warehouse locations',
-      'Integration with existing ERP system via REST API',
-      'Sub-second response time for barcode scans'
+    image: '/img/barbershop.png',
+    slug: 'pos-loyalty-barbershop',
+    title: 'POS Loyalty Barbershop Platform',
+    subtitle:
+      'Platform operasional barbershop berbasis web/PWA untuk POS, loyalty customer, dan kontrol keuangan harian',
+    problem:
+      'Operasional barbershop sebelumnya berjalan terpisah antara transaksi kasir, pencatatan poin pelanggan, voucher promo, dan kontrol kas harian. Akibatnya, owner kesulitan memantau performa bisnis secara real-time, tim kasir rentan salah input metode pembayaran, dan proses rekonsiliasi kas serta pelaporan keuangan memerlukan effort manual yang tinggi.',
+    solution:
+      'Membangun platform terintegrasi end-to-end dengan pendekatan modular monolith: POS transaksi cepat, loyalty points dan voucher redemption, promo management, push notification, expense tracking, cash withdrawal variance analysis, serta financial reporting (profit-loss, cash-flow, dan period comparison) dalam satu ekosistem API terpusat.',
+    impact:
+      'Proses operasional menjadi jauh lebih terstandar lintas peran (owner, kasir, customer), transparansi data meningkat melalui dashboard dan tracking real-time, serta kontrol keuangan harian lebih akurat lewat mekanisme cash reconciliation dan recalculation flow untuk koreksi transaksi sensitif.',
+    tech: [
+      'Laravel 12',
+      'PHP 8.2',
+      'MySQL',
+      'Next.js 16',
+      'React 19',
+      'Tailwind CSS 4',
+      'Laravel Sanctum',
+      'Web Push (VAPID)',
+      'Recharts',
     ],
-    architecture: 'Laravel REST API backend with PostgreSQL. React Native mobile apps for warehouse staff. WebSocket for real-time updates. PostgreSQL logical replication for multi-warehouse data sync. Redis for caching and rate limiting.',
+    duration: 'Product Build and Architecture Hardening (2025-2026)',
+    role: 'Senior Software Architect and Lead Fullstack Engineer',
+    overview:
+      'Platform ini dirancang sebagai fondasi digital operasional barbershop modern dengan fokus pada kecepatan layanan kasir, retensi pelanggan berbasis loyalty, serta tata kelola finansial yang dapat diaudit. Sistem menggabungkan pengalaman customer mobile-friendly (PWA) dan kontrol owner yang data-driven dalam satu arsitektur yang scalable.',
+    constraints: [
+      'Wajib mendukung multi-role access control dengan batasan hak akses ketat per domain operasi',
+      'Konsistensi data transaksi, poin, voucher, dan cash balance harus terjaga meski terjadi koreksi data historis',
+      'Sistem harus tetap usable pada konteks mobile/PWA dan kondisi jaringan yang tidak selalu stabil',
+      'Operasi sensitif memerlukan proteksi tambahan melalui rate limiting bertingkat dan validasi berlapis',
+    ],
+    architecture:
+      'Arsitektur menggunakan modular monolith dengan Laravel sebagai API backend dan Next.js App Router sebagai frontend. Domain dipisah secara jelas melalui Service Layer (Point, Voucher, Cash Management, Financial Report, Notification), route segmentation per role, serta scheduler berbasis command untuk proses periodik. Data model menghubungkan core POS, loyalty engine, dan financial control agar alur bisnis tetap konsisten dari transaksi hingga reporting.',
     technicalDecisions: [
-      { title: 'CQRS pattern', description: 'Implemented Command Query Responsibility Segregation to optimize both write operations (stock updates) and read operations (inventory queries) independently.' },
-      { title: 'Optimistic sync', description: 'Built offline-first mobile app with eventual consistency - local changes sync when online with conflict resolution.' },
-      { title: 'Event sourcing', description: 'Used event sourcing to maintain complete inventory history, enabling audit trails and analytical insights.' }
+      {
+        title: 'Role-segmented API and middleware strategy',
+        description:
+          'Memisahkan endpoint berdasarkan persona bisnis (admin/kasir, owner, customer) dengan kombinasi auth token Sanctum, role middleware, dan throttling bertingkat untuk menjaga keamanan sekaligus UX operasional.',
+      },
+      {
+        title: 'Domain service orchestration for transactional consistency',
+        description:
+          'Menempatkan business rules pada service domain agar flow transaksi dapat mengorkestrasi perhitungan poin, pemakaian voucher, dan update cash balance secara konsisten dalam boundary transaksi database.',
+      },
+      {
+        title: 'Financial reconciliation as first-class capability',
+        description:
+          'Mengimplementasikan cash balance harian, variance status, withdrawal history, serta command recalculation agar koreksi payment method historis tidak merusak akurasi laporan keuangan.',
+      },
+      {
+        title: 'Dual-channel notification architecture',
+        description:
+          'Menggabungkan web push notification dan in-app notification persistence untuk memastikan pesan bisnis kritikal tetap tersampaikan sekaligus dapat dilacak kembali oleh pengguna.',
+      },
     ],
     implementationHighlights: [
-      'Built custom barcode/QR scanning module with camera integration',
-      'Implemented real-time dashboard with live inventory updates',
-      'Created automated reorder point calculation based on lead times and demand variance',
-      'Designed integration layer for ERP synchronization'
+      'Membangun POS flow lengkap dari pemilihan layanan, validasi voucher, checkout multi-payment method, hingga histori transaksi',
+      'Mengimplementasikan loyalty engine: kalkulasi poin, redeem voucher, validasi status voucher, dan customer-facing voucher management',
+      'Menyediakan dashboard owner dengan metrik harian dan bulanan, customer insights, trend transaksi, dan statistik poin',
+      'Mengembangkan modul financial control: expense management, cash withdrawal variance, reconciliation, profit-loss, cash-flow, dan period comparison',
+      'Menerapkan push notification event-driven dan scheduled reminder untuk meningkatkan engagement customer',
+      'Menyediakan mekanisme koreksi transaksi yang aman dengan auto-recalculation cash balance untuk menjaga integritas data',
     ],
     challenges: [
-      { challenge: 'Offline-first requirements', solution: 'Implemented local SQLite database on mobile devices with CRDT-like conflict resolution for simultaneous edits.' },
-      { challenge: 'Real-time multi-location sync', solution: 'Used PostgreSQL logical replication with conflict resolution at application layer, achieving sub-second sync across locations.' },
-      { challenge: 'Performance with large datasets', solution: 'Implemented database partitioning by warehouse and time-based partitioning for transaction history.' }
+      {
+        challenge:
+          'Menjaga konsistensi domain lintas transaksi, loyalty, dan finansial',
+        solution:
+          'Mendesain orchestration berbasis service domain dan database transaction boundary agar mutasi data antar modul tetap atomic dan dapat ditelusuri.',
+      },
+      {
+        challenge:
+          'Mengelola akurasi kas saat terjadi koreksi metode pembayaran historis',
+        solution:
+          'Menambahkan endpoint koreksi terkontrol plus command cash recalculation dari tanggal terdampak hingga current date untuk memulihkan integritas ledger harian.',
+      },
+      {
+        challenge:
+          'Menyatukan pengalaman customer engagement dengan reliabilitas operasional',
+        solution:
+          'Mengadopsi arsitektur notifikasi dual-channel (push + in-app), scheduler periodik, dan model data notifikasi terstruktur untuk menjaga delivery serta auditability.',
+      },
     ],
     lessonsLearned: [
-      'Offline-first architecture requires different thinking - design for network failures',
-      'Real-time sync across geographic locations is harder than it looks',
-      'Inventory math is deceptively complex - safety stock, reorder points, lead times all interact',
-      'User adoption depends on performance - slow apps get abandoned'
-    ]
-  }
-];
+      'Arsitektur POS modern tidak cukup fokus pada checkout, tetapi harus menyatukan loyalty dan financial governance sebagai satu domain bisnis utuh',
+      'Koreksi data operasional perlu disiapkan sebagai kapabilitas sistem, bukan aktivitas ad-hoc manual',
+      'Service Layer yang disiplin mempercepat scaling fitur dan menurunkan coupling antar modul',
+      'Keselarasan antara kode, dokumentasi, dan kontrak API adalah kunci untuk maintainability jangka panjang',
+    ],
+  },
+]
 
 export const notes: Note[] = [
   {
     slug: 'automated-testing-laravel',
     title: 'Lessons from implementing automated testing in Laravel',
-    excerpt: 'How I built a comprehensive testing pipeline from scratch, including unit tests, feature tests, and browser tests.',
+    excerpt:
+      'How I built a comprehensive testing pipeline from scratch, including unit tests, feature tests, and browser tests.',
     category: 'Testing',
     readTime: '8 min read',
     date: '2024-01-15',
@@ -204,12 +347,13 @@ After 6 months:
 - 80% test coverage
 - 90% reduction in production bugs
 - 50% faster feature development
-    `
+    `,
   },
   {
     slug: 'debugging-production-performance',
     title: 'Debugging production performance issues: A case study',
-    excerpt: 'A deep dive into diagnosing and fixing a severe performance degradation in a Laravel application.',
+    excerpt:
+      'A deep dive into diagnosing and fixing a severe performance degradation in a Laravel application.',
     category: 'Performance',
     readTime: '12 min read',
     date: '2024-02-20',
@@ -268,12 +412,13 @@ Response time dropped from 15 seconds to 150ms - a 100x improvement.
 - Always profile database queries in production-like conditions
 - N+1 problems hide until you have real data
 - Monitoring and alerting are essential for quick problem detection
-    `
+    `,
   },
   {
     slug: 'maintainable-crud-architectures',
     title: 'Designing maintainable CRUD architectures',
-    excerpt: 'Patterns and practices for building Laravel applications that remain maintainable as they grow.',
+    excerpt:
+      'Patterns and practices for building Laravel applications that remain maintainable as they grow.',
     category: 'Architecture',
     readTime: '10 min read',
     date: '2024-03-10',
@@ -345,12 +490,13 @@ class UpdateOrderStatus
 - Business logic is testable and reusable
 - Onboarding new developers is easier
 - Bugs are easier to find and fix
-    `
+    `,
   },
   {
     slug: 'reliable-backend-systems',
     title: 'Building reliable backend systems: Best practices',
-    excerpt: 'Essential practices for building backend systems that can handle failure gracefully.',
+    excerpt:
+      'Essential practices for building backend systems that can handle failure gracefully.',
     category: 'Reliability',
     readTime: '15 min read',
     date: '2024-04-05',
@@ -430,6 +576,6 @@ You can't fix what you can't see:
 - Track error rates and latency
 - Set up alerts for anomalies
 - Use distributed tracing for microservices
-    `
-  }
-];
+    `,
+  },
+]

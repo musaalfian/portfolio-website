@@ -1,27 +1,27 @@
-'use client';
+'use client'
 
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { href: '#work', label: 'Work' },
-  { href: '#notes', label: 'Notes' },
-  { href: '#stack', label: 'Stack' },
-  { href: '#contact', label: 'Contact' },
-];
+  { href: '/#work', label: 'Work' },
+  { href: '/#notes', label: 'Notes' },
+  { href: '/#stack', label: 'Stack' },
+  { href: '/#contact', label: 'Contact' },
+]
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50">
@@ -35,9 +35,14 @@ export default function Header() {
         >
           <div className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-r from-[#38bdf8]/6 via-[#6366f1]/7 to-[#22c55e]/6" />
 
-          <Link href="/" className="relative font-mono text-lg font-bold tracking-[0.12em] sm:text-xl">
-            <span className="bg-linear-to-r from-[#e2e8f0] via-[#93c5fd] to-[#86efac] bg-clip-text text-transparent">MA</span>
-        </Link>
+          <Link
+            href="/"
+            className="relative font-mono text-lg font-bold tracking-[0.12em] sm:text-xl"
+          >
+            <span className="bg-linear-to-r from-[#e2e8f0] via-[#93c5fd] to-[#86efac] bg-clip-text text-transparent">
+              MA
+            </span>
+          </Link>
 
           <nav className="relative hidden items-center gap-2 md:flex">
             {navLinks.map((link) => (
@@ -57,7 +62,14 @@ export default function Header() {
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
           >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               {isMobileMenuOpen ? (
                 <path d="M6 6l12 12M6 18L18 6" />
               ) : (
@@ -92,5 +104,5 @@ export default function Header() {
         )}
       </AnimatePresence>
     </header>
-  );
+  )
 }

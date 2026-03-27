@@ -1,7 +1,7 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -12,7 +12,7 @@ const containerVariants = {
       delayChildren: 0.2,
     },
   },
-};
+}
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -24,7 +24,7 @@ const itemVariants = {
       ease: [0.25, 0.1, 0.25, 1] as const,
     },
   },
-};
+}
 
 export default function Hero() {
   return (
@@ -58,17 +58,19 @@ export default function Hero() {
           >
             Building
             <span className="bg-linear-to-r from-[#67e8f9] via-[#a5b4fc] to-[#34d399] bg-clip-text text-transparent">
-              {' '}elegant digital products
-            </span>
-            {' '}for real operational impact.
+              {' '}
+              elegant digital products
+            </span>{' '}
+            for real operational impact.
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
             className="mb-10 max-w-2xl text-lg leading-relaxed text-[#cbd5e1] md:text-xl"
           >
-            I craft reliable web platforms across React, Next.js, and Laravel with strong focus on
-            system reliability, maintainable architecture, and production-ready delivery.
+            I craft reliable web platforms across React, Next.js, and Laravel
+            with strong focus on system reliability, maintainable architecture,
+            and production-ready delivery.
           </motion.p>
 
           <motion.div
@@ -82,7 +84,14 @@ export default function Hero() {
               <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(118deg,rgba(255,255,255,0.26)_0%,rgba(255,255,255,0.08)_42%,transparent_72%)] opacity-75 transition-opacity duration-300 group-hover:opacity-100" />
               <span className="relative z-10 inline-flex items-center gap-2">
                 View My Work
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
                   <path d="M3 8h10M9 4l4 4-4 4" />
                 </svg>
               </span>
@@ -100,15 +109,38 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{
+            delay: 0.35,
+            duration: 0.7,
+            ease: [0.25, 0.1, 0.25, 1],
+          }}
           className="relative"
         >
           <div className="pointer-events-none absolute -inset-6 bg-linear-to-br from-[#38bdf8]/20 via-[#6366f1]/20 to-[#22c55e]/20 blur-3xl" />
           <div className="relative rounded-3xl border border-white/20 bg-white/10 p-6 shadow-[0_18px_80px_rgba(15,23,42,0.5)] backdrop-blur-2xl md:p-8">
             <div className="mb-6 flex items-center justify-between">
-              <p className="text-sm font-medium tracking-wide text-[#e2e8f0]">Current Focus</p>
+              <p className="text-sm font-medium tracking-wide text-[#e2e8f0]">
+                Current Focus
+              </p>
               <span className="rounded-full border border-emerald-300/40 bg-emerald-300/20 px-3 py-1 text-xs text-emerald-100">
-                Available for Projects
+                <div className="flex items-center gap-2">
+                  {/* Circle icon with looping animation */}
+                  <motion.span
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ repeat: Infinity, duration: 2 }}
+                    className="inline-flex h-2.5 w-2.5 items-center justify-center rounded-full bg-emerald-500"
+                  >
+                    <svg
+                      width="4"
+                      height="4"
+                      viewBox="0 0 8 8"
+                      fill="currentColor"
+                    >
+                      <circle cx="4" cy="4" r="4" />
+                    </svg>
+                  </motion.span>
+                  Available for Projects
+                </div>
               </span>
             </div>
 
@@ -134,9 +166,13 @@ export default function Hero() {
                   key={item.title}
                   className="rounded-2xl border border-white/15 bg-[#0f172a]/55 p-4"
                 >
-                  <p className="mb-2 text-xs uppercase tracking-[0.14em] text-[#94a3b8]">{item.title}</p>
+                  <p className="mb-2 text-xs uppercase tracking-[0.14em] text-[#94a3b8]">
+                    {item.title}
+                  </p>
                   <div className="flex items-center justify-between gap-3">
-                    <p className="text-base font-medium text-[#f8fafc]">{item.value}</p>
+                    <p className="text-base font-medium text-[#f8fafc]">
+                      {item.value}
+                    </p>
                     <span
                       className={`h-2.5 w-20 rounded-full bg-linear-to-r ${item.accent}`}
                     />
@@ -155,16 +191,24 @@ export default function Hero() {
         transition={{ delay: 1.5, duration: 0.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-         <motion.div
-         animate={{ y: [0, 8, 0] }}
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
-         >
-         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-           <path d="M12 5v14M19 12l-7 7-7-7" />
-         </svg>
-         </motion.div>
-       </motion.div>
-    
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#94a3b8"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M12 5v14M19 12l-7 7-7-7" />
+          </svg>
+        </motion.div>
+      </motion.div>
     </section>
-  );
+  )
 }

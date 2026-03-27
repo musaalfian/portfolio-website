@@ -1,19 +1,21 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
 
 const technologies = [
   {
     name: 'Laravel',
-    description: 'Building reliable backend systems and business logic with elegant syntax and robust architecture.',
+    description:
+      'Building reliable backend systems and business logic with elegant syntax and robust architecture.',
   },
   {
     name: 'Next.js',
-    description: 'High-performance frontend and modern web architecture with Server Components.',
+    description:
+      'High-performance frontend and modern web architecture with Server Components.',
   },
   {
-    name: 'PostgreSQL',
-    description: 'Structured relational data modeling and complex queries with ACID compliance.',
+    name: 'MySQL',
+    description: 'Relational database management with ACID compliance.',
   },
   {
     name: 'TypeScript',
@@ -21,17 +23,21 @@ const technologies = [
   },
   {
     name: 'Docker',
-    description: 'Containerization and consistent environments across development and production.',
+    description:
+      'Containerization and consistent environments across development and production.',
   },
   {
     name: 'Redis',
     description: 'Caching, session management, and real-time features.',
   },
-];
+]
 
 export default function TechStack() {
   return (
-    <section id="stack" className="relative overflow-hidden bg-[#050b18]/80 py-20 md:py-28">
+    <section
+      id="stack"
+      className="relative overflow-hidden bg-[#050b18]/80 py-20 md:py-28"
+    >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_20%,rgba(52,211,153,0.11),transparent_35%),radial-gradient(circle_at_78%_80%,rgba(56,189,248,0.1),transparent_35%),linear-gradient(180deg,rgba(6,78,59,0.08)_0%,rgba(5,11,24,0.65)_100%)]" />
         <div className="absolute inset-x-0 top-0 h-20 bg-linear-to-b from-[#050b18]/78 to-transparent" />
@@ -84,5 +90,5 @@ export default function TechStack() {
         </div>
       </div>
     </section>
-  );
+  )
 }

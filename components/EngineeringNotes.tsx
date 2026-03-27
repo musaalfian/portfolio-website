@@ -1,19 +1,25 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Note } from '@/lib/data';
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { Note } from '@/lib/data'
 
 interface EngineeringNotesProps {
-  notes: Note[];
-  showAll?: boolean;
+  notes: Note[]
+  showAll?: boolean
 }
 
-export default function EngineeringNotes({ notes, showAll = false }: EngineeringNotesProps) {
-  const displayNotes = showAll ? notes : notes.slice(0, 3);
+export default function EngineeringNotes({
+  notes,
+  showAll = false,
+}: EngineeringNotesProps) {
+  const displayNotes = showAll ? notes : notes.slice(0, 3)
 
   return (
-    <section id="notes" className="relative overflow-hidden bg-[#050b18]/80 py-20 md:py-28">
+    <section
+      id="notes"
+      className="relative overflow-hidden bg-[#050b18]/80 py-20 md:py-28"
+    >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(56,189,248,0.1),transparent_36%),radial-gradient(circle_at_85%_12%,rgba(99,102,241,0.11),transparent_34%),linear-gradient(180deg,rgba(30,58,138,0.09)_0%,rgba(5,11,24,0.65)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.04)_1px,transparent_1px)] bg-size-[72px_72px] opacity-30" />
@@ -37,8 +43,9 @@ export default function EngineeringNotes({ notes, showAll = false }: Engineering
               Engineering Notes
             </h2>
             <p className="max-w-3xl text-lg leading-relaxed text-[#cbd5e1]">
-              Practical field notes from shipping production software, debugging edge cases,
-              and designing systems that stay reliable under pressure.
+              Practical field notes from shipping production software, debugging
+              edge cases, and designing systems that stay reliable under
+              pressure.
             </p>
           </div>
           {!showAll && (
@@ -47,7 +54,14 @@ export default function EngineeringNotes({ notes, showAll = false }: Engineering
               className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-2.5 text-sm font-medium text-[#e2e8f0] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/15"
             >
               View all notes
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
                 <path d="M3 8h10M9 4l4 4-4 4" />
               </svg>
             </Link>
@@ -75,8 +89,12 @@ export default function EngineeringNotes({ notes, showAll = false }: Engineering
                         <span className="rounded-md border border-sky-300/40 bg-sky-300/15 px-2.5 py-1 text-xs font-medium text-sky-100">
                           {note.category}
                         </span>
-                        <span className="text-xs text-[#94a3b8]">{note.readTime}</span>
-                        <span className="text-xs text-[#64748b]">{note.date}</span>
+                        <span className="text-xs text-[#94a3b8]">
+                          {note.readTime}
+                        </span>
+                        <span className="text-xs text-[#64748b]">
+                          {note.date}
+                        </span>
                       </div>
 
                       <h3 className="mb-2 text-lg font-semibold text-[#f8fafc] transition-colors group-hover:text-[#93c5fd] md:text-xl">
@@ -108,5 +126,5 @@ export default function EngineeringNotes({ notes, showAll = false }: Engineering
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
 
 const achievements = [
   {
@@ -19,11 +19,11 @@ const achievements = [
     description: 'Real users relying on systems I built daily',
   },
   {
-    metric: '100%',
+    metric: '90%',
     label: 'Project delivery rate',
     description: 'Successfully delivered all projects on time',
   },
-];
+]
 
 export default function Achievements() {
   return (
@@ -80,5 +80,5 @@ export default function Achievements() {
         </div>
       </div>
     </section>
-  );
+  )
 }

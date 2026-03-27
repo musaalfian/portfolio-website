@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
 
 const buildLogSections = [
   {
@@ -49,24 +49,31 @@ const buildLogSections = [
       'Edge caching enabled for global performance',
     ],
   },
-];
+]
 
 export default function BuildLogPage() {
   return (
-    <article className="min-h-screen pt-24 pb-20">
-      <div className="max-w-4xl mx-auto px-6">
+    <article className="relative min-h-screen pt-24 pb-20">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.1)_1px,transparent_1px)] bg-size-[56px_56px] opacity-25" />
+        <div className="absolute inset-x-0 bottom-0 h-72 bg-linear-to-b from-transparent via-[#081327]/70 to-[#050b18]/80" />
+      </div>
+      <div className="max-w-4xl mx-auto px-6 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <span className="text-sm font-mono text-[#6366f1] uppercase tracking-wider">Behind the Scenes</span>
+          <span className="text-sm font-mono text-[#6366f1] uppercase tracking-wider">
+            Behind the Scenes
+          </span>
           <h1 className="text-4xl md:text-5xl font-bold text-[#f8fafc] mt-4 mb-6 tracking-tight">
             Build Log
           </h1>
           <p className="text-xl text-[#94a3b8] leading-relaxed">
-            How this portfolio was built, demonstrating engineering transparency and technical depth.
+            How this portfolio was built, demonstrating engineering transparency
+            and technical depth.
           </p>
         </motion.div>
 
@@ -87,8 +94,19 @@ export default function BuildLogPage() {
               <div className="bg-[#1e293b] rounded-xl p-6 border border-[#334155]">
                 <ul className="space-y-3">
                   {section.content.map((item, itemIndex) => (
-                    <li key={itemIndex} className="flex items-start gap-3 text-[#94a3b8]">
-                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#22c55e" strokeWidth="1.5" className="flex-shrink-0 mt-0.5">
+                    <li
+                      key={itemIndex}
+                      className="flex items-start gap-3 text-[#94a3b8]"
+                    >
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        stroke="#22c55e"
+                        strokeWidth="1.5"
+                        className="flex-shrink-0 mt-0.5"
+                      >
                         <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                       </svg>
                       {item}
@@ -106,9 +124,17 @@ export default function BuildLogPage() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-16 p-6 bg-[#1e293b] rounded-xl border border-[#334155]"
         >
-          <h3 className="text-lg font-semibold text-[#f8fafc] mb-4">Tech Stack</h3>
+          <h3 className="text-lg font-semibold text-[#f8fafc] mb-4">
+            Tech Stack
+          </h3>
           <div className="flex flex-wrap gap-3">
-            {['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel'].map((tech) => (
+            {[
+              'Next.js 14',
+              'TypeScript',
+              'Tailwind CSS',
+              'Framer Motion',
+              'Vercel',
+            ].map((tech) => (
               <span
                 key={tech}
                 className="px-3 py-1 text-sm bg-[#0f172a] text-[#94a3b8] rounded-full border border-[#334155]"
@@ -120,5 +146,5 @@ export default function BuildLogPage() {
         </motion.div>
       </div>
     </article>
-  );
+  )
 }
