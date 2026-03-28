@@ -19,7 +19,7 @@ const achievements = [
     description: 'Real users relying on systems I built daily',
   },
   {
-    metric: '90%',
+    metric: '95%',
     label: 'Project delivery rate',
     description: 'Successfully delivered all projects on time',
   },

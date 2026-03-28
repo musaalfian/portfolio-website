@@ -12,7 +12,36 @@ export default function CaseStudyPage() {
   const params = useParams<{ slug: string }>()
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug
   const project = projects.find((p) => p.slug === slug)
+  const [activeImageIndex, setActiveImageIndex] = useState(0)
   const [isImagePreviewOpen, setIsImagePreviewOpen] = useState(false)
+
+  if (!project) {
+    notFound()
+  }
+
+  const galleryImages =
+    project.gallery.length > 0
+      ? project.gallery.slice(0, 5)
+      : [
+          {
+            src: project.image,
+            alt: `${project.title} interface preview`,
+            caption: 'Project interface snapshot',
+          },
+        ]
+  const activeImage = galleryImages[activeImageIndex] ?? galleryImages[0]
+
+  const goToPreviousImage = () => {
+    setActiveImageIndex((prev) =>
+      prev === 0 ? galleryImages.length - 1 : prev - 1
+    )
+  }
+
+  const goToNextImage = () => {
+    setActiveImageIndex((prev) =>
+      prev === galleryImages.length - 1 ? 0 : prev + 1
+    )
+  }
 
   useEffect(() => {
     if (!isImagePreviewOpen) {
@@ -24,6 +53,20 @@ export default function CaseStudyPage() {
       if (event.key === 'Escape') {
         setIsImagePreviewOpen(false)
       }
+
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault()
+        setActiveImageIndex((prev) =>
+          prev === 0 ? galleryImages.length - 1 : prev - 1
+        )
+      }
+
+      if (event.key === 'ArrowRight') {
+        event.preventDefault()
+        setActiveImageIndex((prev) =>
+          prev === galleryImages.length - 1 ? 0 : prev + 1
+        )
+      }
     }
 
     document.body.style.overflow = 'hidden'
@@ -33,11 +76,7 @@ export default function CaseStudyPage() {
       document.body.style.overflow = previousOverflow
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [isImagePreviewOpen])
-
-  if (!project) {
-    notFound()
-  }
+  }, [isImagePreviewOpen, galleryImages.length])
 
   return (
     <article className="relative min-h-screen overflow-hidden pt-24 pb-28">
@@ -87,7 +126,7 @@ export default function CaseStudyPage() {
               </p>
 
               <div className="mb-8 flex flex-wrap gap-4">
-                <div className="rounded-xl border border-white/15 bg-white/10 px-4 py-2 backdrop-blur-xl">
+                <div className="rounded-xl border border-white/15 bg-slate-800/30 px-4 py-2 backdrop-blur-xl">
                   <span className="mb-1 block text-xs uppercase tracking-wider text-[#94a3b8]">
                     Role
                   </span>
@@ -95,7 +134,7 @@ export default function CaseStudyPage() {
                     {project.role}
                   </span>
                 </div>
-                <div className="rounded-xl border border-white/15 bg-white/10 px-4 py-2 backdrop-blur-xl">
+                <div className="rounded-xl border border-white/15 bg-slate-800/30 px-4 py-2 backdrop-blur-xl">
                   <span className="mb-1 block text-xs uppercase tracking-wider text-[#94a3b8]">
                     Duration
                   </span>
@@ -121,40 +160,156 @@ export default function CaseStudyPage() {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.55, delay: 0.1 }}
-              className="relative"
+              className="relative space-y-4"
             >
               <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-linear-to-br from-[#6366f1]/25 via-[#38bdf8]/10 to-[#22c55e]/20 blur-2xl" />
 
-              <button
-                type="button"
-                onClick={() => setIsImagePreviewOpen(true)}
-                className="group relative block w-full cursor-zoom-in overflow-hidden rounded-3xl border border-white/20 bg-[#0b1325]/80 p-2 text-left shadow-[0_30px_80px_rgba(2,8,23,0.55)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#93c5fd]/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020617]"
-                aria-label={`Open ${project.title} image preview`}
-              >
-                <div className="relative aspect-4/3 overflow-hidden rounded-2xl">
+              <div className="group relative overflow-hidden rounded-3xl border border-white/20 bg-[#0b1325]/80 p-2 text-left shadow-[0_30px_80px_rgba(2,8,23,0.55)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#93c5fd]/45">
+                <div className="relative aspect-4/3 overflow-hidden rounded-2xl border border-white/10">
                   <Image
-                    src={project.image}
-                    alt={`${project.title} interface preview`}
+                    src={activeImage.src}
+                    alt={activeImage.alt}
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 40vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-[#020617]/85 via-[#020617]/20 to-transparent" />
-                  <div className="absolute right-4 top-4 rounded-full border border-white/20 bg-[#020617]/70 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#dbeafe] backdrop-blur-xl">
-                    Click to Preview
+
+                  <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-[#020617]/70 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#dbeafe] backdrop-blur-xl">
+                    {activeImageIndex + 1} of {galleryImages.length}
                   </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsImagePreviewOpen(true)}
+                    className="absolute right-4 top-4 rounded-full border border-white/20 bg-[#020617]/70 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#dbeafe] backdrop-blur-xl transition-colors hover:bg-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]/80"
+                    aria-label={`Open ${project.title} image preview`}
+                  >
+                    Full Preview
+                  </button>
+
+                  <div className="absolute inset-y-0 left-2 hidden items-center sm:flex">
+                    <button
+                      type="button"
+                      onClick={goToPreviousImage}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-[#020617]/75 text-[#dbeafe] backdrop-blur-xl transition-colors hover:bg-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]/80"
+                      aria-label="Show previous screenshot"
+                    >
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M15 18l-6-6 6-6" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div className="absolute inset-y-0 right-2 hidden items-center sm:flex">
+                    <button
+                      type="button"
+                      onClick={goToNextImage}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-[#020617]/75 text-[#dbeafe] backdrop-blur-xl transition-colors hover:bg-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]/80"
+                      aria-label="Show next screenshot"
+                    >
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M9 6l6 6-6 6" />
+                      </svg>
+                    </button>
+                  </div>
+
                   <div className="absolute inset-x-0 bottom-0 p-4">
                     <p className="text-xs uppercase tracking-[0.14em] text-[#93c5fd]">
                       System Snapshot
                     </p>
                     <p className="mt-1 text-sm text-[#e2e8f0]">
-                      Production-oriented architecture with measurable
-                      operational outcomes.
+                      {activeImage.caption}
                     </p>
                   </div>
                 </div>
-              </button>
+
+                <div className="mt-3 flex items-center justify-between rounded-xl border border-white/15 bg-[#020617]/55 px-3 py-2 sm:hidden">
+                  <button
+                    type="button"
+                    onClick={goToPreviousImage}
+                    className="inline-flex items-center gap-1 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-[#dbeafe] transition-colors hover:bg-white/10"
+                    aria-label="Show previous screenshot"
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                    Prev
+                  </button>
+                  <p className="text-xs uppercase tracking-[0.12em] text-[#cbd5e1]">
+                    Image {activeImageIndex + 1}/{galleryImages.length}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={goToNextImage}
+                    className="inline-flex items-center gap-1 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-[#dbeafe] transition-colors hover:bg-white/10"
+                    aria-label="Show next screenshot"
+                  >
+                    Next
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M9 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-5 gap-2">
+                {galleryImages.map((image, index) => (
+                  <button
+                    key={`${image.src}-${index}`}
+                    type="button"
+                    onClick={() => setActiveImageIndex(index)}
+                    className={`relative overflow-hidden rounded-lg border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]/80 ${
+                      activeImageIndex === index
+                        ? 'border-[#7dd3fc]/70 shadow-[0_0_0_1px_rgba(125,211,252,0.5)]'
+                        : 'border-white/15 opacity-75 hover:opacity-100'
+                    }`}
+                    aria-label={`Select screenshot ${index + 1}`}
+                  >
+                    <div className="relative aspect-4/3">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        sizes="(max-width: 1024px) 20vw, 8vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <span className="absolute left-1.5 top-1.5 rounded bg-[#020617]/70 px-1.5 py-0.5 text-[10px] font-medium text-[#dbeafe]">
+                      {index + 1}
+                    </span>
+                  </button>
+                ))}
+              </div>
             </motion.div>
           </div>
         </motion.div>
@@ -164,9 +319,12 @@ export default function CaseStudyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.12 }}
-            className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl md:p-8"
+            className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
-            <h2 className="mb-4 text-2xl font-bold text-[#f8fafc]">Overview</h2>
+            <div className="flex items-center mb-4 gap-3">
+              <div className="h-8 w-1 bg-[#38bdf8]" />
+              <h2 className="text-2xl font-bold text-[#f8fafc]">Overview</h2>
+            </div>
             <p className="leading-relaxed text-[#cbd5e1]">{project.overview}</p>
           </motion.section>
 
@@ -175,7 +333,7 @@ export default function CaseStudyPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.18 }}
-              className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl md:p-8"
+              className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
             >
               <h2 className="mb-4 text-2xl font-bold text-[#f8fafc]">
                 Problem
@@ -189,7 +347,7 @@ export default function CaseStudyPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.22 }}
-              className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl md:p-8"
+              className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
             >
               <h2 className="mb-4 text-2xl font-bold text-[#f8fafc]">
                 Solution
@@ -204,7 +362,7 @@ export default function CaseStudyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.26 }}
-            className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl md:p-8"
+            className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-5 text-2xl font-bold text-[#f8fafc]">
               Constraints & Requirements
@@ -226,7 +384,7 @@ export default function CaseStudyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl md:p-8"
+            className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-4 text-2xl font-bold text-[#f8fafc]">
               System Architecture
@@ -252,7 +410,7 @@ export default function CaseStudyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.34 }}
-            className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl md:p-8"
+            className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-6 text-2xl font-bold text-[#f8fafc]">
               Implementation Highlights
@@ -273,7 +431,7 @@ export default function CaseStudyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.38 }}
-            className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl md:p-8"
+            className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-6 text-2xl font-bold text-[#f8fafc]">
               Key Technical Decisions
@@ -299,7 +457,7 @@ export default function CaseStudyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.42 }}
-            className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl md:p-8"
+            className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-6 text-2xl font-bold text-[#f8fafc]">
               Challenges & Solutions
@@ -331,7 +489,7 @@ export default function CaseStudyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.46 }}
-            className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl md:p-8"
+            className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-4 text-2xl font-bold text-[#f8fafc]">
               Results & Impact
@@ -345,7 +503,7 @@ export default function CaseStudyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl md:p-8"
+            className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-6 text-2xl font-bold text-[#f8fafc]">
               Lessons Learned
@@ -415,19 +573,64 @@ export default function CaseStudyPage() {
 
               <div className="relative h-[84vh] w-full overflow-hidden rounded-2xl border border-white/20 bg-[#020617]/95 shadow-[0_45px_120px_rgba(2,6,23,0.75)]">
                 <Image
-                  src={project.image}
-                  alt={`${project.title} interface preview enlarged`}
+                  src={activeImage.src}
+                  alt={`${activeImage.alt} enlarged`}
                   fill
                   priority
                   sizes="100vw"
                   className="object-contain"
                 />
+
+                <div className="absolute inset-y-0 left-4 hidden items-center sm:flex">
+                  <button
+                    type="button"
+                    onClick={goToPreviousImage}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-[#020617]/70 text-[#e2e8f0] transition-colors hover:bg-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]/80"
+                    aria-label="Show previous screenshot"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+                </div>
+                <div className="absolute inset-y-0 right-4 hidden items-center sm:flex">
+                  <button
+                    type="button"
+                    onClick={goToNextImage}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-[#020617]/70 text-[#e2e8f0] transition-colors hover:bg-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]/80"
+                    aria-label="Show next screenshot"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M9 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                </div>
               </div>
 
               <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-white/15 bg-[#0f172a]/70 px-4 py-3 text-sm text-[#cbd5e1] backdrop-blur-xl">
-                <p>{project.title} - interface preview</p>
+                <p>
+                  {project.title} - screenshot {activeImageIndex + 1} of{' '}
+                  {galleryImages.length}
+                </p>
+                <p className="max-w-2xl text-sm text-[#cbd5e1]">
+                  {activeImage.caption}
+                </p>
                 <p className="text-xs uppercase tracking-[0.12em] text-[#93c5fd]">
-                  Click outside or press Esc to close
+                  Use arrows or Esc to close
                 </p>
               </div>
             </motion.div>

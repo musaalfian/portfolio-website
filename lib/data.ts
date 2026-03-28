@@ -1,4 +1,5 @@
 export interface Project {
+  gallery: { src: string; alt: string; caption: string }[]
   image: string
   slug: string
   title: string
@@ -30,10 +31,37 @@ export interface Note {
 
 export const projects: Project[] = [
   {
+    gallery: [
+      {
+        src: '/img/simas-1.png',
+        alt: 'SIMAS dashboard overview',
+        caption: 'Dashboard monitoring surat dengan status proses real-time',
+      },
+      {
+        src: '/img/simas-2.png',
+        alt: 'SIMAS incoming letter management',
+        caption: 'Manajemen surat masuk internal dan eksternal per unit',
+      },
+      {
+        src: '/img/simas-3.png',
+        alt: 'SIMAS approval workflow',
+        caption: 'Workflow approval berjenjang untuk validasi dokumen',
+      },
+      {
+        src: '/img/simas-4.png',
+        alt: 'SIMAS disposition interface',
+        caption: 'Disposisi dan tembusan lintas jabatan dalam satu alur',
+      },
+      {
+        src: '/img/simas-5.png',
+        alt: 'SIMAS reporting snapshot',
+        caption: 'Ringkasan SLA dan audit trail untuk evaluasi operasional',
+      },
+    ],
     image: '/img/simas.png',
     slug: 'simas-v2',
     title: 'SIMAS v2.0',
-    subtitle: 'Sistem Informasi Manajemen Administrasi Surat lintas unit',
+    subtitle: 'Sistem Informasi Manajemen Administrasi Surat Lintas Unit',
     problem:
       'Proses persuratan sebelumnya tersebar di banyak alur manual: registrasi surat masuk, pengajuan surat keluar, disposisi, dan approval berjenjang belum terintegrasi. Dampaknya adalah keterlambatan tindak lanjut, minimnya visibilitas status, serta tingginya risiko inkonsistensi data antar unit.',
     solution:
@@ -101,11 +129,157 @@ export const projects: Project[] = [
     ],
   },
   {
+    gallery: [
+      {
+        src: '/img/barbershop-1.png',
+        alt: 'POS barbershop dashboard',
+        caption: 'Ringkasan operasional harian dan performa bisnis',
+      },
+      {
+        src: '/img/barbershop-2.png',
+        alt: 'POS checkout flow',
+        caption: 'Checkout multi-metode pembayaran dengan alur cepat',
+      },
+      {
+        src: '/img/barbershop-3.png',
+        alt: 'POS loyalty and voucher',
+        caption: 'Manajemen loyalty points, voucher, dan customer rewards',
+      },
+      {
+        src: '/img/barbershop-4.png',
+        alt: 'POS financial control',
+        caption: 'Kontrol kas, expense tracking, dan variance monitoring',
+      },
+      {
+        src: '/img/barbershop-5.png',
+        alt: 'POS business reports',
+        caption: 'Laporan profit-loss dan cash-flow untuk owner',
+      },
+    ],
+    image: '/img/barbershop.png',
+    slug: 'pos-loyalty-barbershop',
+    title: 'POS Loyalty Barbershop Platform',
+    subtitle:
+      'Platform operasional barbershop berbasis web/PWA untuk POS, loyalty customer, dan kontrol keuangan harian',
+    problem:
+      'Operasional barbershop sebelumnya berjalan terpisah antara transaksi kasir, pencatatan poin pelanggan, voucher promo, dan kontrol kas harian. Akibatnya, owner kesulitan memantau performa bisnis secara real-time, tim kasir rentan salah input metode pembayaran, dan proses rekonsiliasi kas serta pelaporan keuangan memerlukan effort manual yang tinggi.',
+    solution:
+      'Membangun platform terintegrasi end-to-end dengan pendekatan modular monolith: POS transaksi cepat, loyalty points dan voucher redemption, promo management, push notification, expense tracking, cash withdrawal variance analysis, serta financial reporting (profit-loss, cash-flow, dan period comparison) dalam satu ekosistem API terpusat.',
+    impact:
+      'Proses operasional menjadi jauh lebih terstandar lintas peran (owner, kasir, customer), transparansi data meningkat melalui dashboard dan tracking real-time, serta kontrol keuangan harian lebih akurat lewat mekanisme cash reconciliation dan recalculation flow untuk koreksi transaksi sensitif.',
+    tech: [
+      'Laravel 12',
+      'PHP 8.2',
+      'MySQL',
+      'Next.js 16',
+      'React 19',
+      'Tailwind CSS 4',
+      'Laravel Sanctum',
+      'Web Push (VAPID)',
+      'Recharts',
+    ],
+    duration: 'Product Build and Architecture Hardening (2025-2026)',
+    role: 'Senior Software Architect and Lead Fullstack Engineer',
+    overview:
+      'Platform ini dirancang sebagai fondasi digital operasional barbershop modern dengan fokus pada kecepatan layanan kasir, retensi pelanggan berbasis loyalty, serta tata kelola finansial yang dapat diaudit. Sistem menggabungkan pengalaman customer mobile-friendly (PWA) dan kontrol owner yang data-driven dalam satu arsitektur yang scalable.',
+    constraints: [
+      'Wajib mendukung multi-role access control dengan batasan hak akses ketat per domain operasi',
+      'Konsistensi data transaksi, poin, voucher, dan cash balance harus terjaga meski terjadi koreksi data historis',
+      'Sistem harus tetap usable pada konteks mobile/PWA dan kondisi jaringan yang tidak selalu stabil',
+      'Operasi sensitif memerlukan proteksi tambahan melalui rate limiting bertingkat dan validasi berlapis',
+    ],
+    architecture:
+      'Arsitektur menggunakan modular monolith dengan Laravel sebagai API backend dan Next.js App Router sebagai frontend. Domain dipisah secara jelas melalui Service Layer (Point, Voucher, Cash Management, Financial Report, Notification), route segmentation per role, serta scheduler berbasis command untuk proses periodik. Data model menghubungkan core POS, loyalty engine, dan financial control agar alur bisnis tetap konsisten dari transaksi hingga reporting.',
+    technicalDecisions: [
+      {
+        title: 'Role-segmented API and middleware strategy',
+        description:
+          'Memisahkan endpoint berdasarkan persona bisnis (admin/kasir, owner, customer) dengan kombinasi auth token Sanctum, role middleware, dan throttling bertingkat untuk menjaga keamanan sekaligus UX operasional.',
+      },
+      {
+        title: 'Domain service orchestration for transactional consistency',
+        description:
+          'Menempatkan business rules pada service domain agar flow transaksi dapat mengorkestrasi perhitungan poin, pemakaian voucher, dan update cash balance secara konsisten dalam boundary transaksi database.',
+      },
+      {
+        title: 'Financial reconciliation as first-class capability',
+        description:
+          'Mengimplementasikan cash balance harian, variance status, withdrawal history, serta command recalculation agar koreksi payment method historis tidak merusak akurasi laporan keuangan.',
+      },
+      {
+        title: 'Dual-channel notification architecture',
+        description:
+          'Menggabungkan web push notification dan in-app notification persistence untuk memastikan pesan bisnis kritikal tetap tersampaikan sekaligus dapat dilacak kembali oleh pengguna.',
+      },
+    ],
+    implementationHighlights: [
+      'Membangun POS flow lengkap dari pemilihan layanan, validasi voucher, checkout multi-payment method, hingga histori transaksi',
+      'Mengimplementasikan loyalty engine: kalkulasi poin, redeem voucher, validasi status voucher, dan customer-facing voucher management',
+      'Menyediakan dashboard owner dengan metrik harian dan bulanan, customer insights, trend transaksi, dan statistik poin',
+      'Mengembangkan modul financial control: expense management, cash withdrawal variance, reconciliation, profit-loss, cash-flow, dan period comparison',
+      'Menerapkan push notification event-driven dan scheduled reminder untuk meningkatkan engagement customer',
+      'Menyediakan mekanisme koreksi transaksi yang aman dengan auto-recalculation cash balance untuk menjaga integritas data',
+    ],
+    challenges: [
+      {
+        challenge:
+          'Menjaga konsistensi domain lintas transaksi, loyalty, dan finansial',
+        solution:
+          'Mendesain orchestration berbasis service domain dan database transaction boundary agar mutasi data antar modul tetap atomic dan dapat ditelusuri.',
+      },
+      {
+        challenge:
+          'Mengelola akurasi kas saat terjadi koreksi metode pembayaran historis',
+        solution:
+          'Menambahkan endpoint koreksi terkontrol plus command cash recalculation dari tanggal terdampak hingga current date untuk memulihkan integritas ledger harian.',
+      },
+      {
+        challenge:
+          'Menyatukan pengalaman customer engagement dengan reliabilitas operasional',
+        solution:
+          'Mengadopsi arsitektur notifikasi dual-channel (push + in-app), scheduler periodik, dan model data notifikasi terstruktur untuk menjaga delivery serta auditability.',
+      },
+    ],
+    lessonsLearned: [
+      'Arsitektur POS modern tidak cukup fokus pada checkout, tetapi harus menyatukan loyalty dan financial governance sebagai satu domain bisnis utuh',
+      'Koreksi data operasional perlu disiapkan sebagai kapabilitas sistem, bukan aktivitas ad-hoc manual',
+      'Service Layer yang disiplin mempercepat scaling fitur dan menurunkan coupling antar modul',
+      'Keselarasan antara kode, dokumentasi, dan kontrak API adalah kunci untuk maintainability jangka panjang',
+    ],
+  },
+  {
+    gallery: [
+      {
+        src: '/img/sipeipe-1.png',
+        alt: 'SIPEIPE academic dashboard',
+        caption: 'Dashboard evaluasi per periode akademik lintas peran',
+      },
+      {
+        src: '/img/sipeipe-2.png',
+        alt: 'SIPEIPE assessment form',
+        caption: 'Template form penilaian self, peer, dan dosen',
+      },
+      {
+        src: '/img/sipeipe-3.png',
+        alt: 'SIPEIPE logbook module',
+        caption: 'Logbook berbasis kompetensi dengan UX mobile-friendly',
+      },
+      {
+        src: '/img/sipeipe-4.png',
+        alt: 'SIPEIPE user import',
+        caption: 'Import massal pengguna dengan progress dan validasi rinci',
+      },
+      {
+        src: '/img/sipeipe-5.png',
+        alt: 'SIPEIPE analytics',
+        caption: 'Analitik performa pembelajaran untuk monitoring institusi',
+      },
+    ],
     image: '/img/sipeipe.png',
     slug: 'sipeipe',
     title: 'SIPEIPE',
     subtitle:
-      'Sistem Informasi Penilaian Interprofessional Education berbasis web',
+      'Sistem Informasi Penilaian Interprofessional Education Berbasis Web',
     problem:
       'Proses penilaian dan logbook sebelumnya tersebar di banyak alur terpisah: pencatatan aktivitas mahasiswa, self-assessment, peer assessment, penilaian dosen, serta evaluasi kelompok keluarga belum berada dalam satu sistem terintegrasi. Dampaknya adalah duplikasi input, sulitnya memantau progres lintas peran, validasi data yang memakan waktu, dan keterbatasan visibilitas performa per periode akademik.',
     solution:
@@ -199,98 +373,6 @@ export const projects: Project[] = [
       'Background job dan progress observability sangat krusial untuk fitur import data skala besar',
       'Keamanan aplikasi terbaik dicapai dengan pendekatan berlapis: authorization, rate limiting, dan monitoring operasional',
       'Dokumentasi pengguna yang jelas mempercepat adopsi sistem lintas peran secara signifikan',
-    ],
-  },
-  {
-    image: '/img/barbershop.png',
-    slug: 'pos-loyalty-barbershop',
-    title: 'POS Loyalty Barbershop Platform',
-    subtitle:
-      'Platform operasional barbershop berbasis web/PWA untuk POS, loyalty customer, dan kontrol keuangan harian',
-    problem:
-      'Operasional barbershop sebelumnya berjalan terpisah antara transaksi kasir, pencatatan poin pelanggan, voucher promo, dan kontrol kas harian. Akibatnya, owner kesulitan memantau performa bisnis secara real-time, tim kasir rentan salah input metode pembayaran, dan proses rekonsiliasi kas serta pelaporan keuangan memerlukan effort manual yang tinggi.',
-    solution:
-      'Membangun platform terintegrasi end-to-end dengan pendekatan modular monolith: POS transaksi cepat, loyalty points dan voucher redemption, promo management, push notification, expense tracking, cash withdrawal variance analysis, serta financial reporting (profit-loss, cash-flow, dan period comparison) dalam satu ekosistem API terpusat.',
-    impact:
-      'Proses operasional menjadi jauh lebih terstandar lintas peran (owner, kasir, customer), transparansi data meningkat melalui dashboard dan tracking real-time, serta kontrol keuangan harian lebih akurat lewat mekanisme cash reconciliation dan recalculation flow untuk koreksi transaksi sensitif.',
-    tech: [
-      'Laravel 12',
-      'PHP 8.2',
-      'MySQL',
-      'Next.js 16',
-      'React 19',
-      'Tailwind CSS 4',
-      'Laravel Sanctum',
-      'Web Push (VAPID)',
-      'Recharts',
-    ],
-    duration: 'Product Build and Architecture Hardening (2025-2026)',
-    role: 'Senior Software Architect and Lead Fullstack Engineer',
-    overview:
-      'Platform ini dirancang sebagai fondasi digital operasional barbershop modern dengan fokus pada kecepatan layanan kasir, retensi pelanggan berbasis loyalty, serta tata kelola finansial yang dapat diaudit. Sistem menggabungkan pengalaman customer mobile-friendly (PWA) dan kontrol owner yang data-driven dalam satu arsitektur yang scalable.',
-    constraints: [
-      'Wajib mendukung multi-role access control dengan batasan hak akses ketat per domain operasi',
-      'Konsistensi data transaksi, poin, voucher, dan cash balance harus terjaga meski terjadi koreksi data historis',
-      'Sistem harus tetap usable pada konteks mobile/PWA dan kondisi jaringan yang tidak selalu stabil',
-      'Operasi sensitif memerlukan proteksi tambahan melalui rate limiting bertingkat dan validasi berlapis',
-    ],
-    architecture:
-      'Arsitektur menggunakan modular monolith dengan Laravel sebagai API backend dan Next.js App Router sebagai frontend. Domain dipisah secara jelas melalui Service Layer (Point, Voucher, Cash Management, Financial Report, Notification), route segmentation per role, serta scheduler berbasis command untuk proses periodik. Data model menghubungkan core POS, loyalty engine, dan financial control agar alur bisnis tetap konsisten dari transaksi hingga reporting.',
-    technicalDecisions: [
-      {
-        title: 'Role-segmented API and middleware strategy',
-        description:
-          'Memisahkan endpoint berdasarkan persona bisnis (admin/kasir, owner, customer) dengan kombinasi auth token Sanctum, role middleware, dan throttling bertingkat untuk menjaga keamanan sekaligus UX operasional.',
-      },
-      {
-        title: 'Domain service orchestration for transactional consistency',
-        description:
-          'Menempatkan business rules pada service domain agar flow transaksi dapat mengorkestrasi perhitungan poin, pemakaian voucher, dan update cash balance secara konsisten dalam boundary transaksi database.',
-      },
-      {
-        title: 'Financial reconciliation as first-class capability',
-        description:
-          'Mengimplementasikan cash balance harian, variance status, withdrawal history, serta command recalculation agar koreksi payment method historis tidak merusak akurasi laporan keuangan.',
-      },
-      {
-        title: 'Dual-channel notification architecture',
-        description:
-          'Menggabungkan web push notification dan in-app notification persistence untuk memastikan pesan bisnis kritikal tetap tersampaikan sekaligus dapat dilacak kembali oleh pengguna.',
-      },
-    ],
-    implementationHighlights: [
-      'Membangun POS flow lengkap dari pemilihan layanan, validasi voucher, checkout multi-payment method, hingga histori transaksi',
-      'Mengimplementasikan loyalty engine: kalkulasi poin, redeem voucher, validasi status voucher, dan customer-facing voucher management',
-      'Menyediakan dashboard owner dengan metrik harian dan bulanan, customer insights, trend transaksi, dan statistik poin',
-      'Mengembangkan modul financial control: expense management, cash withdrawal variance, reconciliation, profit-loss, cash-flow, dan period comparison',
-      'Menerapkan push notification event-driven dan scheduled reminder untuk meningkatkan engagement customer',
-      'Menyediakan mekanisme koreksi transaksi yang aman dengan auto-recalculation cash balance untuk menjaga integritas data',
-    ],
-    challenges: [
-      {
-        challenge:
-          'Menjaga konsistensi domain lintas transaksi, loyalty, dan finansial',
-        solution:
-          'Mendesain orchestration berbasis service domain dan database transaction boundary agar mutasi data antar modul tetap atomic dan dapat ditelusuri.',
-      },
-      {
-        challenge:
-          'Mengelola akurasi kas saat terjadi koreksi metode pembayaran historis',
-        solution:
-          'Menambahkan endpoint koreksi terkontrol plus command cash recalculation dari tanggal terdampak hingga current date untuk memulihkan integritas ledger harian.',
-      },
-      {
-        challenge:
-          'Menyatukan pengalaman customer engagement dengan reliabilitas operasional',
-        solution:
-          'Mengadopsi arsitektur notifikasi dual-channel (push + in-app), scheduler periodik, dan model data notifikasi terstruktur untuk menjaga delivery serta auditability.',
-      },
-    ],
-    lessonsLearned: [
-      'Arsitektur POS modern tidak cukup fokus pada checkout, tetapi harus menyatukan loyalty dan financial governance sebagai satu domain bisnis utuh',
-      'Koreksi data operasional perlu disiapkan sebagai kapabilitas sistem, bukan aktivitas ad-hoc manual',
-      'Service Layer yang disiplin mempercepat scaling fitur dan menurunkan coupling antar modul',
-      'Keselarasan antara kode, dokumentasi, dan kontrak API adalah kunci untuk maintainability jangka panjang',
     ],
   },
 ]

@@ -129,7 +129,7 @@ export default function BuildLogPage() {
           </h3>
           <div className="flex flex-wrap gap-3">
             {[
-              'Next.js 14',
+              'Next.js 16',
               'TypeScript',
               'Tailwind CSS',
               'Framer Motion',

@@ -21,6 +21,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   const caseNumber = String(index + 1).padStart(2, '0')
   const visibleTech = project.tech.slice(0, 3)
   const hiddenTechCount = Math.max(project.tech.length - visibleTech.length, 0)
+  const galleryCount = project.gallery.length
 
   return (
     <motion.div
@@ -52,6 +53,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               <div className="absolute inset-0 bg-linear-to-t from-[#020617]/75 via-[#020617]/15 to-transparent" />
               <div className="absolute left-3 top-3 inline-flex items-center rounded-full border border-white/25 bg-[#020617]/65 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#bfdbfe] backdrop-blur-md">
                 Case {caseNumber}
+              </div>
+              <div className="absolute right-3 top-3 inline-flex items-center rounded-full border border-[#7dd3fc]/35 bg-[#082f49]/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#dbeafe] backdrop-blur-md">
+                {galleryCount} shots
               </div>
             </div>
 
