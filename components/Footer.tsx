@@ -1,106 +1,171 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-const socialLinks = [
+const exploreLinks = [
+  { href: '/', label: 'Beranda' },
+  { href: '/projects', label: 'Karya' },
+  { href: '/notes', label: 'Catatan Rekayasa' },
+  { href: '/build-log', label: 'Catatan Pembangunan' },
+]
+
+const connectLinks = [
   {
     href: 'https://github.com/musaalfian',
     label: 'GitHub',
-    icon: 'M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12',
+    icon: 'M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22',
   },
   {
     href: 'https://linkedin.com/in/musaalfian',
     label: 'LinkedIn',
-    icon: 'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z',
+    icon: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z',
   },
   {
     href: 'mailto:musaganteng071@gmail.com',
     label: 'Email',
-    icon: 'M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 5c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 14c-2.667 0-4.333-1.667-5.306-3H7.5c-.276 0-.5-.224-.5-.5v-.306c.973-1.333 2.639-3 5.306-3 2.667 0 4.333 1.667 5.306 3h-.194c-.276 0-.5.224-.5.5v.306c-.973 1.333-2.639 3-5.306 3z',
+    icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
   },
 ]
 
+const builtWith = ['Next.js', 'Tailwind CSS', 'Framer Motion']
+
 export default function Footer() {
+  const year = new Date().getFullYear()
+
   return (
-    <footer className="relative overflow-hidden ">
-      <div className="pointer-events-none absolute inset-0 ">
-        {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(56,189,248,0.13),transparent_35%),radial-gradient(circle_at_85%_80%,rgba(99,102,241,0.12),transparent_35%),linear-gradient(180deg,#040b18_0%,#081327_100%)]" /> */}
-        <div className="absolute inset-0 bg-[#050b18]/80" />
-        {/* <div className="absolute inset-x-0 top-0 h-20 bg-linear-to-b from-[#040b18]/20 to-transparent" /> */}
+    <footer className="relative overflow-hidden bg-[#040a13]">
+      {/* Hairline divider from the section above */}
+      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+
+      {/* Ambient layers */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(56,189,248,0.07),transparent_40%),radial-gradient(circle_at_88%_8%,rgba(99,102,241,0.07),transparent_42%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.03)_1px,transparent_1px)] bg-size-[80px_80px] opacity-50" />
+        <div className="absolute inset-x-0 bottom-0 flex justify-center overflow-hidden">
+          <span className="block translate-y-[32%] bg-linear-to-t from-white/[0.06] to-white/[0.01] bg-clip-text text-[19vw] font-bold leading-none tracking-tighter text-transparent select-none whitespace-nowrap">
+            Musa Alfian
+          </span>
+        </div>
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-6 py-14">
-        <div className="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-2xl md:p-8">
-          <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="mb-3 inline-flex rounded-full border border-white/20 bg-[#0f172a]/40 px-3 py-1 text-xs uppercase tracking-[0.14em] text-[#93c5fd]">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        className="relative mx-auto max-w-6xl px-6 pt-16 pb-10 md:pt-20 md:pb-12"
+      >
+        <div className="grid gap-12 md:grid-cols-[1.6fr_1fr_1fr] md:gap-8 lg:gap-16">
+          {/* Brand */}
+          <div className="max-w-sm">
+            <Link href="/" className="inline-flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/[0.04] font-mono text-sm font-bold tracking-[0.08em]">
+                <span className="bg-linear-to-r from-[#e2e8f0] via-[#93c5fd] to-[#86efac] bg-clip-text text-transparent">
+                  MA
+                </span>
+              </span>
+              <span className="text-base font-semibold tracking-tight text-[#f1f5f9]">
                 Musa Alfian
-              </p>
-              <p className="max-w-xl text-sm leading-relaxed text-[#cbd5e1] md:text-base">
-                Fullstack engineer yang fokus pada pengiriman yang andal,
-                arsitektur yang matang, dan hasil produk nyata di lingkungan
-                React, Next.js, dan Laravel.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-3">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 bg-[#0f172a]/60 text-[#cbd5e1] transition-all duration-200 hover:-translate-y-0.5 hover:border-white/35 hover:text-white"
-                  aria-label={link.label}
-                >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d={link.icon} />
-                  </svg>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-4 border-t border-white/15 pt-6 md:flex-row md:items-center md:justify-between">
-            <Link
-              href="/build-log"
-              className="inline-flex w-fit items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-4 py-2 text-sm text-[#e2e8f0] transition-all duration-200 hover:bg-white/10"
-            >
-              Lihat Catatan Pembangunan
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M3 8h10M9 4l4 4-4 4" />
-              </svg>
+              </span>
             </Link>
 
-            <div className="flex items-center gap-2 text-sm text-[#94a3b8]">
-              <span>Next.js</span>
-              <span className="text-[#475569]">•</span>
-              <span>Tailwind CSS</span>
-              <span className="text-[#475569]">•</span>
-              <span>Framer Motion</span>
-            </div>
+            <p className="mt-5 text-sm leading-relaxed text-[#94a3b8]">
+              Fullstack engineer yang fokus pada pengiriman yang andal,
+              arsitektur yang matang, dan hasil produk nyata di ekosistem React,
+              Next.js, dan Laravel.
+            </p>
+
+            <p className="mt-5 inline-flex items-center gap-2 text-xs text-[#cbd5e1]">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              </span>
+              Terbuka untuk proyek dan kolaborasi
+            </p>
+          </div>
+
+          {/* Explore */}
+          <nav aria-label="Navigasi footer">
+            <p className="mb-4 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-[#475569]">
+              Jelajah
+            </p>
+            <ul className="space-y-3">
+              {exploreLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="group relative inline-block text-sm text-[#94a3b8] transition-colors duration-200 hover:text-[#f1f5f9]"
+                  >
+                    {link.label}
+                    <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-[#93c5fd] transition-all duration-300 group-hover:w-full" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Connect */}
+          <div>
+            <p className="mb-4 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-[#475569]">
+              Terhubung
+            </p>
+            <ul className="space-y-3">
+              {connectLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2.5 text-sm text-[#94a3b8] transition-colors duration-200 hover:text-[#f1f5f9]"
+                  >
+                    <svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-[#64748b] transition-colors duration-200 group-hover:text-[#93c5fd]"
+                    >
+                      <path d={link.icon} />
+                    </svg>
+                    {link.label}
+                    <svg
+                      width="11"
+                      height="11"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className="text-[#475569] opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
+                    >
+                      <path d="M5 11L11 5M11 5H5M11 5V11" />
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="mt-6 text-center text-sm text-[#64748b] md:text-right">
-          <p>
-            &copy; {new Date().getFullYear()} Musa Alfian. Dibangun dengan
-            pola pikir rekayasa.
+        {/* Bottom bar */}
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-[#64748b]">
+            &copy; {year} Musa Alfian. Dibangun dengan pola pikir rekayasa.
           </p>
+          <div className="flex items-center gap-2 text-xs text-[#64748b]">
+            {builtWith.map((tech, index) => (
+              <span key={tech} className="inline-flex items-center gap-2">
+                {index > 0 && <span className="text-[#334155]">&bull;</span>}
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
+      </motion.div>
     </footer>
   )
 }
