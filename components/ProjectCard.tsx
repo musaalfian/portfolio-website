@@ -52,10 +52,10 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               />
               <div className="absolute inset-0 bg-linear-to-t from-[#020617]/75 via-[#020617]/15 to-transparent" />
               <div className="absolute left-3 top-3 inline-flex items-center rounded-full border border-white/25 bg-[#020617]/65 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#bfdbfe] backdrop-blur-md">
-                Case {caseNumber}
+                Kasus {caseNumber}
               </div>
               <div className="absolute right-3 top-3 inline-flex items-center rounded-full border border-[#7dd3fc]/35 bg-[#082f49]/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#dbeafe] backdrop-blur-md">
-                {galleryCount} shots
+                {galleryCount} gambar
               </div>
             </div>
 
@@ -86,7 +86,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             <dl className="mb-5 grid gap-3 rounded-xl border border-white/10 bg-[#0b1329]/65 p-3.5">
               <div>
                 <dt className="text-[11px] font-semibold uppercase tracking-widest text-[#94a3b8]">
-                  Problem
+                  Masalah
                 </dt>
                 <dd className="mt-1 min-h-[2.4rem] line-clamp-2 text-sm text-[#cbd5e1]">
                   {project.problem}
@@ -94,7 +94,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               </div>
               <div>
                 <dt className="text-[11px] font-semibold uppercase tracking-widest text-[#94a3b8]">
-                  Impact
+                  Dampak
                 </dt>
                 <dd className="mt-1 min-h-[2.4rem] line-clamp-2 text-sm font-medium text-[#86efac]">
                   {project.impact}
@@ -114,14 +114,14 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               ))}
               {hiddenTechCount > 0 && (
                 <span className="rounded-full border border-[#7dd3fc]/35 bg-[#082f49]/55 px-3 py-1 text-xs font-semibold text-[#bae6fd]">
-                  +{hiddenTechCount} tech
+                  +{hiddenTechCount} lainnya
                 </span>
               )}
             </div>
 
             <div className="mt-auto flex items-center justify-between border-t border-white/10 pt-4">
               <p className="text-sm font-semibold text-[#dbeafe]">
-                View case study
+                Lihat studi kasus
               </p>
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-[#93c5fd] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:border-[#7dd3fc]/50">
                 <svg

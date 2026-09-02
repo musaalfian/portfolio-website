@@ -4,23 +4,23 @@ import { motion } from 'framer-motion';
 
 const learningTopics = [
   {
-    topic: 'Advanced testing strategies',
-    focus: 'Property-based testing, mutation testing with Infection, and TDD in Laravel',
+    topic: 'Strategi pengujian tingkat lanjut',
+    focus: 'Property-based testing, mutation testing dengan Infection, dan TDD di Laravel',
     progress: 70,
   },
   {
-    topic: 'System performance diagnosis',
-    focus: 'Profiling, tracing, and optimizing database queries',
+    topic: 'Diagnosis performa sistem',
+    focus: 'Profiling, tracing, dan optimalisasi query basis data',
     progress: 60,
   },
   {
-    topic: 'Security & penetration testing',
-    focus: 'OWASP Top 10, secure coding practices, and vulnerability assessment',
+    topic: 'Keamanan & penetration testing',
+    focus: 'OWASP Top 10, praktik secure coding, dan penilaian kerentanan',
     progress: 40,
   },
   {
-    topic: 'Distributed system architecture',
-    focus: 'Microservices patterns, event-driven architecture, and message queues',
+    topic: 'Arsitektur sistem terdistribusi',
+    focus: 'Pola microservices, arsitektur event-driven, dan message queue',
     progress: 50,
   },
 ];
@@ -43,14 +43,15 @@ export default function LearningProgress() {
           className="mb-16"
         >
           <p className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-[#86efac] backdrop-blur-xl">
-            Growth Roadmap
+            Peta Jalan Pengembangan
           </p>
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-[#f8fafc] md:text-4xl">
-            Currently Learning
+            Sedang Dipelajari
           </h2>
           <p className="max-w-3xl text-lg leading-relaxed text-[#cbd5e1]">
-            Intentional skill expansion to strengthen architecture decisions, performance tuning,
-            and long-term software reliability.
+            Pengembangan keterampilan yang terarah untuk memperkuat keputusan
+            arsitektur, penyetelan performa, dan keandalan perangkat lunak jangka
+            panjang.
           </p>
         </motion.div>
 
@@ -85,7 +86,7 @@ export default function LearningProgress() {
               </div>
 
               <p className="text-xs uppercase tracking-[0.12em] text-[#94a3b8]">
-                Progress toward practical implementation
+                Kemajuan menuju implementasi praktis
               </p>
             </motion.div>
           ))}

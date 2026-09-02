@@ -21,12 +21,12 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Musa Alfian | Software Engineer",
-  description: "Software Engineer who builds reliable systems and solves real operational problems. Fullstack Engineer focused on Laravel ecosystem, system reliability, and scalable web platforms.",
-  keywords: ["software engineer", "fullstack developer", "Laravel", "Next.js", "system design"],
+  description: "Software Engineer yang membangun sistem andal dan menyelesaikan masalah operasional nyata. Fullstack Engineer dengan fokus pada ekosistem Laravel, keandalan sistem, dan platform web yang skalabel.",
+  keywords: ["software engineer", "fullstack developer", "Laravel", "Next.js", "desain sistem", "rekayasa perangkat lunak"],
   authors: [{ name: "Musa Alfian" }],
   openGraph: {
     title: "Musa Alfian | Software Engineer",
-    description: "Software Engineer who builds reliable systems and solves real operational problems.",
+    description: "Software Engineer yang membangun sistem andal dan menyelesaikan masalah operasional nyata.",
     type: "website",
   },
 };
@@ -37,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="id" className="scroll-smooth">
       <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}>
         <Header />
         <main className="min-h-screen">

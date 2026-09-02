@@ -6,29 +6,29 @@ const technologies = [
   {
     name: 'Laravel',
     description:
-      'Building reliable backend systems and business logic with elegant syntax and robust architecture.',
+      'Membangun sistem backend yang andal dan logika bisnis dengan sintaks yang elegan serta arsitektur yang kokoh.',
   },
   {
     name: 'Next.js',
     description:
-      'High-performance frontend and modern web architecture with Server Components.',
+      'Frontend berperforma tinggi dan arsitektur web modern dengan Server Components.',
   },
   {
     name: 'MySQL',
-    description: 'Relational database management with ACID compliance.',
+    description: 'Pengelolaan basis data relasional dengan kepatuhan ACID.',
   },
   {
     name: 'TypeScript',
-    description: 'Type safety and maintainable code across the full stack.',
+    description: 'Keamanan tipe dan kode yang mudah dirawat di seluruh stack.',
   },
   {
     name: 'Docker',
     description:
-      'Containerization and consistent environments across development and production.',
+      'Kontainerisasi dan lingkungan yang konsisten antara pengembangan dan produksi.',
   },
   {
     name: 'Redis',
-    description: 'Caching, session management, and real-time features.',
+    description: 'Caching, manajemen sesi, dan fitur real-time.',
   },
 ]
 
@@ -53,13 +53,13 @@ export default function TechStack() {
           className="mb-16"
         >
           <p className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-[#6ee7b7] backdrop-blur-xl">
-            Technical Foundation
+            Fondasi Teknis
           </p>
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-[#f8fafc] md:text-4xl">
-            Technology Stack
+            Teknologi yang Digunakan
           </h2>
           <p className="max-w-3xl text-lg leading-relaxed text-[#cbd5e1]">
-            Tools I use to build reliable, scalable systems.
+            Perangkat yang saya gunakan untuk membangun sistem yang andal dan skalabel.
           </p>
         </motion.div>
 

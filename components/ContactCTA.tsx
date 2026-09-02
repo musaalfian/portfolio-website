@@ -12,13 +12,13 @@ const socialLinks = [
   {
     href: 'https://linkedin.com/in/musaalfian/',
     label: 'LinkedIn',
-    description: 'Connect with me',
+    description: 'Terhubung dengan saya',
     icon: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z',
   },
   {
     href: 'https://github.com/musaalfian',
     label: 'GitHub',
-    description: 'View my code',
+    description: 'Lihat kode saya',
     icon: 'M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22',
   },
 ]
@@ -45,15 +45,15 @@ export default function ContactCTA() {
           className="mb-12 rounded-3xl border border-white/20 bg-white/10 p-8 text-center shadow-[0_20px_80px_rgba(8,47,73,0.35)] backdrop-blur-2xl md:p-12"
         >
           <p className="mb-4 inline-flex rounded-full border border-white/20 bg-[#0f172a]/40 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-[#93c5fd]">
-            Open for Collaboration
+            Terbuka untuk Kolaborasi
           </p>
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-[#f8fafc] md:text-5xl">
-            Let&apos;s Connect
+            Mari Terhubung
           </h2>
           <p className="mx-auto mb-8 max-w-3xl text-lg leading-relaxed text-[#cbd5e1]">
-            Available for product engineering, architecture consultation, and
-            building reliable systems across React, Next.js, and Laravel
-            ecosystems.
+            Tersedia untuk product engineering, konsultasi arsitektur, dan
+            pembangunan sistem yang andal di ekosistem React, Next.js, dan
+            Laravel.
           </p>
 
           <a
@@ -62,7 +62,7 @@ export default function ContactCTA() {
           >
             <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(118deg,rgba(255,255,255,0.26)_0%,rgba(255,255,255,0.08)_42%,transparent_72%)] opacity-75 transition-opacity duration-300 group-hover:opacity-100" />
             <span className="relative z-10 inline-flex items-center gap-2">
-              Start a Conversation
+              Mulai Percakapan
               <svg
                 width="16"
                 height="16"

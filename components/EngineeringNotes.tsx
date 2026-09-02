@@ -37,15 +37,15 @@ export default function EngineeringNotes({
         >
           <div>
             <p className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-[#93c5fd] backdrop-blur-xl">
-              Engineering Journal
+              Jurnal Rekayasa
             </p>
             <h2 className="mb-4 text-3xl font-bold tracking-tight text-[#f8fafc] md:text-4xl">
-              Engineering Notes
+              Catatan Rekayasa
             </h2>
             <p className="max-w-3xl text-lg leading-relaxed text-[#cbd5e1]">
-              Practical field notes from shipping production software, debugging
-              edge cases, and designing systems that stay reliable under
-              pressure.
+              Catatan lapangan praktis dari merilis perangkat lunak ke produksi,
+              menelusuri kasus tepi, dan merancang sistem yang tetap andal di
+              bawah tekanan.
             </p>
           </div>
           {!showAll && (
@@ -53,7 +53,7 @@ export default function EngineeringNotes({
               href="/notes"
               className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-2.5 text-sm font-medium text-[#e2e8f0] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/15"
             >
-              View all notes
+              Lihat semua catatan
               <svg
                 width="16"
                 height="16"

@@ -34,27 +34,27 @@ export const projects: Project[] = [
     gallery: [
       {
         src: '/img/simas-1.png',
-        alt: 'SIMAS dashboard overview',
+        alt: 'Ikhtisar dashboard SIMAS',
         caption: 'Dashboard monitoring surat dengan status proses real-time',
       },
       {
         src: '/img/simas-2.png',
-        alt: 'SIMAS incoming letter management',
+        alt: 'Manajemen surat masuk SIMAS',
         caption: 'Manajemen surat masuk internal dan eksternal per unit',
       },
       {
         src: '/img/simas-3.png',
-        alt: 'SIMAS approval workflow',
+        alt: 'Alur approval SIMAS',
         caption: 'Workflow approval berjenjang untuk validasi dokumen',
       },
       {
         src: '/img/simas-4.png',
-        alt: 'SIMAS disposition interface',
+        alt: 'Antarmuka disposisi SIMAS',
         caption: 'Disposisi dan tembusan lintas jabatan dalam satu alur',
       },
       {
         src: '/img/simas-5.png',
-        alt: 'SIMAS reporting snapshot',
+        alt: 'Cuplikan pelaporan SIMAS',
         caption: 'Ringkasan SLA dan audit trail untuk evaluasi operasional',
       },
     ],
@@ -83,17 +83,17 @@ export const projects: Project[] = [
       'Arsitektur menggunakan pendekatan modular monolith di Laravel dengan pemisahan Service Layer, Repository, Event, dan Notification. Model data transisional menggabungkan tabel legacy dan model canonical baru (surat_generals + pivot unit) untuk mendukung migrasi bertahap. Caching dan indexing digunakan untuk akselerasi dashboard, sementara notifikasi dan workflow status dijalankan berbasis event domain.',
     technicalDecisions: [
       {
-        title: 'Canonical letter model for multi-unit flow',
+        title: 'Model surat kanonik untuk alur lintas unit',
         description:
           'Mengadopsi model surat canonical dengan relasi pivot per unit penerima agar distribusi surat, status baca, dan status tindak lanjut dapat dilacak secara granular.',
       },
       {
-        title: 'Safe staged migration strategy',
+        title: 'Strategi migrasi bertahap yang aman',
         description:
           'Menerapkan tahapan additive schema, backfill terukur, dan cutover bertahap agar kompatibilitas data lama tetap terjaga selama transisi v1 ke v2.',
       },
       {
-        title: 'Context-aware RBAC and workflow',
+        title: 'RBAC dan workflow yang sadar konteks',
         description:
           'Merancang otorisasi berbasis peran + unit aktif untuk memastikan hak akses, approval chain, dan disposisi hanya berjalan pada konteks organisasi yang benar.',
       },
@@ -132,27 +132,27 @@ export const projects: Project[] = [
     gallery: [
       {
         src: '/img/barbershop-1.png',
-        alt: 'POS barbershop dashboard',
+        alt: 'Dashboard POS barbershop',
         caption: 'Ringkasan operasional harian dan performa bisnis',
       },
       {
         src: '/img/barbershop-2.png',
-        alt: 'POS checkout flow',
+        alt: 'Alur checkout POS',
         caption: 'Checkout multi-metode pembayaran dengan alur cepat',
       },
       {
         src: '/img/barbershop-3.png',
-        alt: 'POS loyalty and voucher',
+        alt: 'Loyalty dan voucher POS',
         caption: 'Manajemen loyalty points, voucher, dan customer rewards',
       },
       {
         src: '/img/barbershop-4.png',
-        alt: 'POS financial control',
+        alt: 'Kontrol keuangan POS',
         caption: 'Kontrol kas, expense tracking, dan variance monitoring',
       },
       {
         src: '/img/barbershop-5.png',
-        alt: 'POS business reports',
+        alt: 'Laporan bisnis POS',
         caption: 'Laporan profit-loss dan cash-flow untuk owner',
       },
     ],
@@ -192,22 +192,22 @@ export const projects: Project[] = [
       'Arsitektur menggunakan modular monolith dengan Laravel sebagai API backend dan Next.js App Router sebagai frontend. Domain dipisah secara jelas melalui Service Layer (Point, Voucher, Cash Management, Financial Report, Notification), route segmentation per role, serta scheduler berbasis command untuk proses periodik. Data model menghubungkan core POS, loyalty engine, dan financial control agar alur bisnis tetap konsisten dari transaksi hingga reporting.',
     technicalDecisions: [
       {
-        title: 'Role-segmented API and middleware strategy',
+        title: 'Strategi API dan middleware tersegmentasi per peran',
         description:
           'Memisahkan endpoint berdasarkan persona bisnis (admin/kasir, owner, customer) dengan kombinasi auth token Sanctum, role middleware, dan throttling bertingkat untuk menjaga keamanan sekaligus UX operasional.',
       },
       {
-        title: 'Domain service orchestration for transactional consistency',
+        title: 'Orkestrasi service domain untuk konsistensi transaksional',
         description:
           'Menempatkan business rules pada service domain agar flow transaksi dapat mengorkestrasi perhitungan poin, pemakaian voucher, dan update cash balance secara konsisten dalam boundary transaksi database.',
       },
       {
-        title: 'Financial reconciliation as first-class capability',
+        title: 'Rekonsiliasi keuangan sebagai kapabilitas utama',
         description:
           'Mengimplementasikan cash balance harian, variance status, withdrawal history, serta command recalculation agar koreksi payment method historis tidak merusak akurasi laporan keuangan.',
       },
       {
-        title: 'Dual-channel notification architecture',
+        title: 'Arsitektur notifikasi dua kanal',
         description:
           'Menggabungkan web push notification dan in-app notification persistence untuk memastikan pesan bisnis kritikal tetap tersampaikan sekaligus dapat dilacak kembali oleh pengguna.',
       },
@@ -251,27 +251,27 @@ export const projects: Project[] = [
     gallery: [
       {
         src: '/img/sipeipe-1.png',
-        alt: 'SIPEIPE academic dashboard',
+        alt: 'Dashboard akademik SIPEIPE',
         caption: 'Dashboard evaluasi per periode akademik lintas peran',
       },
       {
         src: '/img/sipeipe-2.png',
-        alt: 'SIPEIPE assessment form',
+        alt: 'Formulir penilaian SIPEIPE',
         caption: 'Template form penilaian self, peer, dan dosen',
       },
       {
         src: '/img/sipeipe-3.png',
-        alt: 'SIPEIPE logbook module',
+        alt: 'Modul logbook SIPEIPE',
         caption: 'Logbook berbasis kompetensi dengan UX mobile-friendly',
       },
       {
         src: '/img/sipeipe-4.png',
-        alt: 'SIPEIPE user import',
+        alt: 'Impor pengguna SIPEIPE',
         caption: 'Import massal pengguna dengan progress dan validasi rinci',
       },
       {
         src: '/img/sipeipe-5.png',
-        alt: 'SIPEIPE analytics',
+        alt: 'Analitik SIPEIPE',
         caption: 'Analitik performa pembelajaran untuk monitoring institusi',
       },
     ],
@@ -314,22 +314,22 @@ export const projects: Project[] = [
       'Arsitektur menggunakan modular monolith di Laravel dengan pemisahan domain berbasis route modules, service layer, observer, dan job queue. Strategi performa menerapkan SQL aggregation, composite indexing, multi-layer caching, serta asynchronous API loading untuk komponen dashboard. Proses impor data memanfaatkan chunk processing dan background jobs agar skalabel dan tahan timeout.',
     technicalDecisions: [
       {
-        title: 'Template-driven assessment and logbook engine',
+        title: 'Mesin penilaian dan logbook berbasis template',
         description:
           'Menerapkan model template untuk form penilaian dan logbook agar instrumen evaluasi dapat dipakai ulang, di-versioning, dan di-deploy per periode tanpa mengganggu histori data.',
       },
       {
-        title: 'Async import pipeline with chunk jobs',
+        title: 'Pipeline impor asinkron dengan chunk job',
         description:
           'Menggunakan pipeline import berbasis queue dan chunk processing untuk memproses data pengguna dalam volume besar dengan progress tracking, validasi berlapis, dan error reporting yang jelas.',
       },
       {
-        title: 'Performance-first dashboard architecture',
+        title: 'Arsitektur dashboard yang mengutamakan performa',
         description:
           'Mengganti agregasi in-memory menjadi agregasi SQL, menambahkan indeks komposit, serta memisahkan initial render dan background loading untuk menjaga waktu respons tetap cepat.',
       },
       {
-        title: 'Layered protection with named rate limiters',
+        title: 'Proteksi berlapis dengan rate limiter bernama',
         description:
           'Menerapkan limiter terpisah untuk login, form submission, upload, export, dan route umum sehingga sistem tetap aman tanpa mengorbankan kenyamanan penggunaan normal.',
       },
@@ -380,38 +380,38 @@ export const projects: Project[] = [
 export const notes: Note[] = [
   {
     slug: 'automated-testing-laravel',
-    title: 'Lessons from implementing automated testing in Laravel',
+    title: 'Pelajaran dari menerapkan pengujian otomatis di Laravel',
     excerpt:
-      'How I built a comprehensive testing pipeline from scratch, including unit tests, feature tests, and browser tests.',
-    category: 'Testing',
-    readTime: '8 min read',
+      'Bagaimana saya membangun pipeline pengujian yang menyeluruh dari nol, mencakup unit test, feature test, dan browser test.',
+    category: 'Pengujian',
+    readTime: '8 menit baca',
     date: '2024-01-15',
     content: `
-## Overview
+## Ringkasan
 
-Testing is often treated as an afterthought in Laravel projects, but implementing a robust testing strategy can dramatically improve code quality and reduce bugs in production.
+Pengujian sering dianggap sebagai hal sekunder dalam proyek Laravel, padahal menerapkan strategi pengujian yang kokoh dapat meningkatkan kualitas kode secara signifikan dan menekan bug di produksi.
 
-## The Beginning
+## Titik Awal
 
-When I first started, our Laravel application had zero test coverage. Every deployment was a gamble, and hotfixes frequently introduced new bugs. I decided to change this.
+Saat pertama memulai, aplikasi Laravel kami tidak memiliki test coverage sama sekali. Setiap deployment adalah pertaruhan, dan hotfix kerap memunculkan bug baru. Saya memutuskan untuk mengubah kondisi ini.
 
-## Strategy
+## Strategi
 
-I approached testing in layers:
+Saya menyusun pengujian secara berlapis:
 
-1. **Unit Tests** - Test individual methods and business logic
-2. **Feature Tests** - Test user workflows and API endpoints  
-3. **Browser Tests** - Test critical user interactions
+1. **Unit Test** - Menguji method individu dan logika bisnis
+2. **Feature Test** - Menguji alur kerja pengguna dan endpoint API
+3. **Browser Test** - Menguji interaksi pengguna yang kritikal
 
-## Key Learnings
+## Pelajaran Utama
 
-### 1. Test Behavior, Not Implementation
+### 1. Uji Perilaku, Bukan Implementasi
 
-The biggest mistake I made was testing implementation details. When I refactored code, tests broke even though the behavior was correct. I learned to focus on what the code *does*, not *how* it does it.
+Kesalahan terbesar saya adalah menguji detail implementasi. Ketika kode di-refactor, test ikut gagal meski perilakunya sudah benar. Saya belajar untuk fokus pada apa yang *dilakukan* kode, bukan *bagaimana* ia melakukannya.
 
-### 2. Use Pest PHP
+### 2. Gunakan Pest PHP
 
-Pest PHP provides a beautiful fluent interface for PHPUnit. It reduces boilerplate and makes tests more readable:
+Pest PHP menyediakan antarmuka fluent yang rapi untuk PHPUnit. Ia mengurangi boilerplate dan membuat test lebih mudah dibaca:
 
 \`\`\`php
 it('can create a user')
@@ -419,43 +419,43 @@ it('can create a user')
     ->assertStatus(201);
 \`\`\`
 
-### 3. Test Database Strategy
+### 3. Strategi Basis Data untuk Pengujian
 
-Use in-memory SQLite for unit tests, but test against PostgreSQL for feature tests to catch database-specific issues.
+Gunakan SQLite in-memory untuk unit test, tetapi uji terhadap PostgreSQL untuk feature test agar masalah spesifik basis data tetap terdeteksi.
 
-## Results
+## Hasil
 
-After 6 months:
+Setelah 6 bulan:
 - 80% test coverage
-- 90% reduction in production bugs
-- 50% faster feature development
+- 90% penurunan bug di produksi
+- 50% pengembangan fitur lebih cepat
     `,
   },
   {
     slug: 'debugging-production-performance',
-    title: 'Debugging production performance issues: A case study',
+    title: 'Menelusuri masalah performa di produksi: sebuah studi kasus',
     excerpt:
-      'A deep dive into diagnosing and fixing a severe performance degradation in a Laravel application.',
-    category: 'Performance',
-    readTime: '12 min read',
+      'Pembahasan mendalam tentang mendiagnosis dan memperbaiki penurunan performa yang parah pada aplikasi Laravel.',
+    category: 'Performa',
+    readTime: '12 menit baca',
     date: '2024-02-20',
     content: `
-## The Problem
+## Masalahnya
 
-At 2 AM, I received an alert: our API response times had increased from 200ms to 15+ seconds. Users were experiencing timeouts and the system was barely functional.
+Pukul 2 dini hari, saya menerima peringatan: waktu respons API kami melonjak dari 200ms menjadi lebih dari 15 detik. Pengguna mengalami timeout dan sistem nyaris tidak berfungsi.
 
-## Initial Investigation
+## Investigasi Awal
 
-I started by checking the usual suspects:
-- Server CPU/memory: Normal
-- Database connections: Normal  
-- External API calls: Normal
+Saya mulai memeriksa dugaan yang biasa:
+- CPU/memori server: Normal
+- Koneksi basis data: Normal
+- Panggilan API eksternal: Normal
 
-The issue wasn't obvious.
+Sumber masalahnya tidak langsung terlihat.
 
-## Database Query Analysis
+## Analisis Query Basis Data
 
-I enabled the query log and discovered the problem. A seemingly innocent dashboard query was executing 500+ queries due to the N+1 problem:
+Saya mengaktifkan query log dan menemukan masalahnya. Sebuah query dashboard yang tampak sederhana ternyata menjalankan lebih dari 500 query akibat masalah N+1:
 
 \`\`\`php
 // This caused N+1 queries
@@ -465,53 +465,53 @@ foreach ($orders as $order) {
 }
 \`\`\`
 
-The fix was simple with eager loading:
+Perbaikannya sederhana dengan eager loading:
 
 \`\`\`php
 $orders = Order::with('customer')->get();
 \`\`\`
 
-## The Deeper Issue
+## Masalah yang Lebih Dalam
 
-But that wasn't all. Even with eager loading, queries were slow. I discovered:
-- Missing indexes on frequently queried columns
-- Full table scans on large tables
-- Inefficient join queries
+Namun itu belum semuanya. Bahkan dengan eager loading, query tetap lambat. Saya menemukan:
+- Indeks yang hilang pada kolom yang sering di-query
+- Full table scan pada tabel berukuran besar
+- Query join yang tidak efisien
 
-## Solutions Implemented
+## Solusi yang Diterapkan
 
-1. Added database indexes on foreign keys and frequently filtered columns
-2. Implemented query caching with Redis
-3. Added database connection pooling
-4. Implemented read replicas for heavy read queries
+1. Menambahkan indeks basis data pada foreign key dan kolom yang sering difilter
+2. Menerapkan query caching dengan Redis
+3. Menambahkan connection pooling basis data
+4. Menerapkan read replica untuk query baca yang berat
 
-## Results
+## Hasil
 
-Response time dropped from 15 seconds to 150ms - a 100x improvement.
+Waktu respons turun dari 15 detik menjadi 150ms - peningkatan 100 kali lipat.
 
-## Key Takeaways
+## Poin Penting
 
-- Always profile database queries in production-like conditions
-- N+1 problems hide until you have real data
-- Monitoring and alerting are essential for quick problem detection
+- Selalu lakukan profiling query basis data pada kondisi menyerupai produksi
+- Masalah N+1 tersembunyi hingga data nyata cukup besar
+- Pemantauan dan peringatan sangat penting untuk mendeteksi masalah dengan cepat
     `,
   },
   {
     slug: 'maintainable-crud-architectures',
-    title: 'Designing maintainable CRUD architectures',
+    title: 'Merancang arsitektur CRUD yang mudah dirawat',
     excerpt:
-      'Patterns and practices for building Laravel applications that remain maintainable as they grow.',
-    category: 'Architecture',
-    readTime: '10 min read',
+      'Pola dan praktik untuk membangun aplikasi Laravel yang tetap mudah dirawat seiring pertumbuhannya.',
+    category: 'Arsitektur',
+    readTime: '10 menit baca',
     date: '2024-03-10',
     content: `
-## The CRUD Trap
+## Jebakan CRUD
 
-Laravel makes it incredibly easy to build CRUD applications. But as your application grows, naive CRUD code becomes unmaintainable.
+Laravel membuat pembuatan aplikasi CRUD menjadi sangat mudah. Namun seiring aplikasi berkembang, kode CRUD yang naif menjadi sulit dirawat.
 
-## The Problem
+## Masalahnya
 
-Here's what typically happens:
+Berikut yang biasanya terjadi:
 
 \`\`\`php
 // OrdersController.php
@@ -520,16 +520,16 @@ public function update(Request $request, $id)
     $order = Order::find($id);
     $order->status = $request->status;
     $order->save();
-    
+
     // 200 lines later...
 }
 \`\`\`
 
-Business logic scattered across controllers, models, and anywhere else it "fit".
+Logika bisnis tersebar di controller, model, dan tempat lain mana pun yang "kebetulan pas".
 
-## Better Approach: Service Classes
+## Pendekatan yang Lebih Baik: Service Class
 
-Extract business logic into dedicated service classes:
+Pindahkan logika bisnis ke service class khusus:
 
 \`\`\`php
 class OrderService
@@ -537,24 +537,24 @@ class OrderService
     public function updateStatus(Order $order, string $status): Order
     {
         // All business logic in one place
-        
+
         if (!$this->canTransitionTo($order->status, $status)) {
             throw new InvalidStatusTransitionException(...);
         }
-        
+
         $order->status = $status;
         $order->save();
-        
+
         event(new OrderStatusChanged($order));
-        
+
         return $order;
     }
 }
 \`\`\`
 
-## Actions Pattern
+## Pola Action
 
-For more complex operations, use the Action pattern:
+Untuk operasi yang lebih kompleks, gunakan pola Action:
 
 \`\`\`php
 class UpdateOrderStatus
@@ -566,30 +566,30 @@ class UpdateOrderStatus
 }
 \`\`\`
 
-## Results
+## Hasil
 
-- Controllers become thin and consistent
-- Business logic is testable and reusable
-- Onboarding new developers is easier
-- Bugs are easier to find and fix
+- Controller menjadi ramping dan konsisten
+- Logika bisnis dapat diuji dan digunakan ulang
+- Onboarding developer baru lebih mudah
+- Bug lebih mudah ditemukan dan diperbaiki
     `,
   },
   {
     slug: 'reliable-backend-systems',
-    title: 'Building reliable backend systems: Best practices',
+    title: 'Membangun sistem backend yang andal: praktik terbaik',
     excerpt:
-      'Essential practices for building backend systems that can handle failure gracefully.',
-    category: 'Reliability',
-    readTime: '15 min read',
+      'Praktik penting untuk membangun sistem backend yang mampu menangani kegagalan dengan baik.',
+    category: 'Keandalan',
+    readTime: '15 menit baca',
     date: '2024-04-05',
     content: `
-## Beyond Happy Path
+## Melampaui Happy Path
 
-Building a backend that works 99% of the time is easy. Building one that degrades gracefully under failure is hard.
+Membangun backend yang berfungsi 99% dari waktu itu mudah. Membangun backend yang menurun secara terkendali saat gagal itu sulit.
 
-## Principle 1: Defensive Programming
+## Prinsip 1: Defensive Programming
 
-Always validate inputs, even from internal services:
+Selalu validasi input, bahkan dari layanan internal:
 
 \`\`\`php
 class PaymentService
@@ -600,30 +600,30 @@ class PaymentService
         if (!isset($paymentData['token'])) {
             throw new InvalidPaymentDataException('Missing payment token');
         }
-        
+
         // ...
     }
 }
 \`\`\`
 
-## Principle 2: Circuit Breakers
+## Prinsip 2: Circuit Breaker
 
-External services will fail. Implement circuit breakers:
+Layanan eksternal pasti akan gagal. Terapkan circuit breaker:
 
 \`\`\`php
 class PaymentGateway
 {
     use CircuitBreaker;
-    
+
     protected int $failureThreshold = 5;
     protected int $timeout = 60;
-    
+
     public function charge(array $data)
     {
         if ($this->isOpen()) {
             throw new ServiceUnavailableException('Payment service degraded');
         }
-        
+
         try {
             return $this->attemptCharge($data);
         } catch (ExternalServiceException $e) {
@@ -634,30 +634,30 @@ class PaymentGateway
 }
 \`\`\`
 
-## Principle 3: Idempotency
+## Prinsip 3: Idempotensi
 
-API calls will be retried. Design for idempotency:
+Panggilan API akan diulang. Rancang agar idempoten:
 
 \`\`\`php
 public function createPayment(string $orderId, string $idempotencyKey)
 {
     $existing = Payment::where('idempotency_key', $idempotencyKey)->first();
-    
+
     if ($existing) {
         return $existing; // Return existing instead of creating duplicate
     }
-    
+
     // Create new payment...
 }
 \`\`\`
 
-## Monitoring
+## Pemantauan
 
-You can't fix what you can't see:
-- Log everything meaningful
-- Track error rates and latency
-- Set up alerts for anomalies
-- Use distributed tracing for microservices
+Anda tidak bisa memperbaiki apa yang tidak bisa Anda lihat:
+- Catat semua hal yang bermakna
+- Pantau tingkat error dan latensi
+- Siapkan peringatan untuk anomali
+- Gunakan distributed tracing untuk microservices
     `,
   },
 ]

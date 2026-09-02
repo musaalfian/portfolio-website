@@ -40,7 +40,7 @@ export default function NotePage() {
             >
               <path d="M13 8H3M7 4l-4 4 4 4" />
             </svg>
-            Back to Notes
+            Kembali ke Catatan
           </Link>
 
           <div className="flex items-center gap-4 mb-6">

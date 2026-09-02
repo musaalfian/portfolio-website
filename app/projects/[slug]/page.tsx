@@ -25,8 +25,8 @@ export default function CaseStudyPage() {
       : [
           {
             src: project.image,
-            alt: `${project.title} interface preview`,
-            caption: 'Project interface snapshot',
+            alt: `Pratinjau antarmuka ${project.title}`,
+            caption: 'Cuplikan antarmuka proyek',
           },
         ]
   const activeImage = galleryImages[activeImageIndex] ?? galleryImages[0]
@@ -108,13 +108,13 @@ export default function CaseStudyPage() {
             >
               <path d="M13 8H3M7 4l-4 4 4 4" />
             </svg>
-            Back to Projects
+            Kembali ke Proyek
           </Link>
 
           <div className="grid items-start gap-8 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
               <p className="mb-4 inline-flex rounded-full border border-white/20 bg-[#0f172a]/70 px-4 py-1 text-xs uppercase tracking-[0.14em] text-[#93c5fd]">
-                Case Study
+                Studi Kasus
               </p>
 
               <h1 className="mb-5 text-3xl font-bold tracking-tight text-[#f8fafc] md:text-5xl">
@@ -128,7 +128,7 @@ export default function CaseStudyPage() {
               <div className="mb-8 flex flex-wrap gap-4">
                 <div className="rounded-xl border border-white/15 bg-slate-800/30 px-4 py-2 backdrop-blur-xl">
                   <span className="mb-1 block text-xs uppercase tracking-wider text-[#94a3b8]">
-                    Role
+                    Peran
                   </span>
                   <span className="font-medium text-[#f8fafc]">
                     {project.role}
@@ -136,7 +136,7 @@ export default function CaseStudyPage() {
                 </div>
                 <div className="rounded-xl border border-white/15 bg-slate-800/30 px-4 py-2 backdrop-blur-xl">
                   <span className="mb-1 block text-xs uppercase tracking-wider text-[#94a3b8]">
-                    Duration
+                    Durasi
                   </span>
                   <span className="font-medium text-[#f8fafc]">
                     {project.duration}
@@ -177,16 +177,16 @@ export default function CaseStudyPage() {
                   <div className="absolute inset-0 bg-linear-to-t from-[#020617]/85 via-[#020617]/20 to-transparent" />
 
                   <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-[#020617]/70 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#dbeafe] backdrop-blur-xl">
-                    {activeImageIndex + 1} of {galleryImages.length}
+                    {activeImageIndex + 1} dari {galleryImages.length}
                   </div>
 
                   <button
                     type="button"
                     onClick={() => setIsImagePreviewOpen(true)}
                     className="absolute right-4 top-4 rounded-full border border-white/20 bg-[#020617]/70 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#dbeafe] backdrop-blur-xl transition-colors hover:bg-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]/80"
-                    aria-label={`Open ${project.title} image preview`}
+                    aria-label={`Buka pratinjau gambar ${project.title}`}
                   >
-                    Full Preview
+                    Pratinjau Penuh
                   </button>
 
                   <div className="absolute inset-y-0 left-2 hidden items-center sm:flex">
@@ -194,7 +194,7 @@ export default function CaseStudyPage() {
                       type="button"
                       onClick={goToPreviousImage}
                       className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-[#020617]/75 text-[#dbeafe] backdrop-blur-xl transition-colors hover:bg-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]/80"
-                      aria-label="Show previous screenshot"
+                      aria-label="Tampilkan tangkapan layar sebelumnya"
                     >
                       <svg
                         width="18"
@@ -214,7 +214,7 @@ export default function CaseStudyPage() {
                       type="button"
                       onClick={goToNextImage}
                       className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-[#020617]/75 text-[#dbeafe] backdrop-blur-xl transition-colors hover:bg-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]/80"
-                      aria-label="Show next screenshot"
+                      aria-label="Tampilkan tangkapan layar berikutnya"
                     >
                       <svg
                         width="18"
@@ -231,7 +231,7 @@ export default function CaseStudyPage() {
 
                   <div className="absolute inset-x-0 bottom-0 p-4">
                     <p className="text-xs uppercase tracking-[0.14em] text-[#93c5fd]">
-                      System Snapshot
+                      Cuplikan Sistem
                     </p>
                     <p className="mt-1 text-sm text-[#e2e8f0]">
                       {activeImage.caption}
@@ -244,7 +244,7 @@ export default function CaseStudyPage() {
                     type="button"
                     onClick={goToPreviousImage}
                     className="inline-flex items-center gap-1 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-[#dbeafe] transition-colors hover:bg-white/10"
-                    aria-label="Show previous screenshot"
+                    aria-label="Tampilkan tangkapan layar sebelumnya"
                   >
                     <svg
                       width="14"
@@ -256,18 +256,18 @@ export default function CaseStudyPage() {
                     >
                       <path d="M15 18l-6-6 6-6" />
                     </svg>
-                    Prev
+                    Sebelumnya
                   </button>
                   <p className="text-xs uppercase tracking-[0.12em] text-[#cbd5e1]">
-                    Image {activeImageIndex + 1}/{galleryImages.length}
+                    Gambar {activeImageIndex + 1}/{galleryImages.length}
                   </p>
                   <button
                     type="button"
                     onClick={goToNextImage}
                     className="inline-flex items-center gap-1 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-[#dbeafe] transition-colors hover:bg-white/10"
-                    aria-label="Show next screenshot"
+                    aria-label="Tampilkan tangkapan layar berikutnya"
                   >
-                    Next
+                    Berikutnya
                     <svg
                       width="14"
                       height="14"
@@ -293,7 +293,7 @@ export default function CaseStudyPage() {
                         ? 'border-[#7dd3fc]/70 shadow-[0_0_0_1px_rgba(125,211,252,0.5)]'
                         : 'border-white/15 opacity-75 hover:opacity-100'
                     }`}
-                    aria-label={`Select screenshot ${index + 1}`}
+                    aria-label={`Pilih tangkapan layar ${index + 1}`}
                   >
                     <div className="relative aspect-4/3">
                       <Image
@@ -323,7 +323,7 @@ export default function CaseStudyPage() {
           >
             <div className="flex items-center mb-4 gap-3">
               <div className="h-8 w-1 bg-[#38bdf8]" />
-              <h2 className="text-2xl font-bold text-[#f8fafc]">Overview</h2>
+              <h2 className="text-2xl font-bold text-[#f8fafc]">Ringkasan</h2>
             </div>
             <p className="leading-relaxed text-[#cbd5e1]">{project.overview}</p>
           </motion.section>
@@ -336,7 +336,7 @@ export default function CaseStudyPage() {
               className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
             >
               <h2 className="mb-4 text-2xl font-bold text-[#f8fafc]">
-                Problem
+                Masalah
               </h2>
               <p className="leading-relaxed text-[#cbd5e1]">
                 {project.problem}
@@ -350,7 +350,7 @@ export default function CaseStudyPage() {
               className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
             >
               <h2 className="mb-4 text-2xl font-bold text-[#f8fafc]">
-                Solution
+                Solusi
               </h2>
               <p className="leading-relaxed text-[#cbd5e1]">
                 {project.solution}
@@ -365,7 +365,7 @@ export default function CaseStudyPage() {
             className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-5 text-2xl font-bold text-[#f8fafc]">
-              Constraints & Requirements
+              Batasan & Kebutuhan
             </h2>
             <ul className="space-y-3">
               {project.constraints.map((constraint, index) => (
@@ -387,7 +387,7 @@ export default function CaseStudyPage() {
             className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-4 text-2xl font-bold text-[#f8fafc]">
-              System Architecture
+              Arsitektur Sistem
             </h2>
             <p className="mb-6 leading-relaxed text-[#cbd5e1]">
               {project.architecture}
@@ -413,7 +413,7 @@ export default function CaseStudyPage() {
             className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-6 text-2xl font-bold text-[#f8fafc]">
-              Implementation Highlights
+              Sorotan Implementasi
             </h2>
             <ul className="grid gap-3 md:grid-cols-2">
               {project.implementationHighlights.map((highlight, index) => (
@@ -434,7 +434,7 @@ export default function CaseStudyPage() {
             className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-6 text-2xl font-bold text-[#f8fafc]">
-              Key Technical Decisions
+              Keputusan Teknis Utama
             </h2>
             <div className="space-y-4">
               {project.technicalDecisions.map((decision, index) => (
@@ -460,7 +460,7 @@ export default function CaseStudyPage() {
             className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-6 text-2xl font-bold text-[#f8fafc]">
-              Challenges & Solutions
+              Tantangan & Solusi
             </h2>
             <div className="space-y-5">
               {project.challenges.map((challenge, index) => (
@@ -470,13 +470,13 @@ export default function CaseStudyPage() {
                 >
                   <div className="mb-4">
                     <span className="text-xs font-mono uppercase tracking-wider text-[#fca5a5]">
-                      Challenge
+                      Tantangan
                     </span>
                     <p className="mt-1 text-[#f8fafc]">{challenge.challenge}</p>
                   </div>
                   <div>
                     <span className="text-xs font-mono uppercase tracking-wider text-[#86efac]">
-                      Solution
+                      Solusi
                     </span>
                     <p className="mt-1 text-[#cbd5e1]">{challenge.solution}</p>
                   </div>
@@ -492,7 +492,7 @@ export default function CaseStudyPage() {
             className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-4 text-2xl font-bold text-[#f8fafc]">
-              Results & Impact
+              Hasil & Dampak
             </h2>
             <p className="text-lg font-medium text-[#86efac]">
               {project.impact}
@@ -506,7 +506,7 @@ export default function CaseStudyPage() {
             className="rounded-2xl border border-white/15 bg-slate-800/30 p-6 backdrop-blur-xl md:p-8"
           >
             <h2 className="mb-6 text-2xl font-bold text-[#f8fafc]">
-              Lessons Learned
+              Pelajaran yang Dipetik
             </h2>
             <ul className="space-y-3">
               {project.lessonsLearned.map((lesson, index) => (
@@ -549,7 +549,7 @@ export default function CaseStudyPage() {
               transition={{ duration: 0.24, ease: 'easeOut' }}
               role="dialog"
               aria-modal="true"
-              aria-label={`${project.title} full image preview`}
+              aria-label={`Pratinjau gambar penuh ${project.title}`}
               className="relative w-full max-w-7xl"
               onClick={(event) => event.stopPropagation()}
             >
@@ -557,7 +557,7 @@ export default function CaseStudyPage() {
                 type="button"
                 onClick={() => setIsImagePreviewOpen(false)}
                 className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-[#020617]/80 text-[#e2e8f0] transition-colors hover:bg-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]/80"
-                aria-label="Close image preview"
+                aria-label="Tutup pratinjau gambar"
               >
                 <svg
                   width="20"
@@ -574,7 +574,7 @@ export default function CaseStudyPage() {
               <div className="relative h-[84vh] w-full overflow-hidden rounded-2xl border border-white/20 bg-[#020617]/95 shadow-[0_45px_120px_rgba(2,6,23,0.75)]">
                 <Image
                   src={activeImage.src}
-                  alt={`${activeImage.alt} enlarged`}
+                  alt={`${activeImage.alt} diperbesar`}
                   fill
                   priority
                   sizes="100vw"
@@ -586,7 +586,7 @@ export default function CaseStudyPage() {
                     type="button"
                     onClick={goToPreviousImage}
                     className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-[#020617]/70 text-[#e2e8f0] transition-colors hover:bg-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]/80"
-                    aria-label="Show previous screenshot"
+                    aria-label="Tampilkan tangkapan layar sebelumnya"
                   >
                     <svg
                       width="20"
@@ -605,7 +605,7 @@ export default function CaseStudyPage() {
                     type="button"
                     onClick={goToNextImage}
                     className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-[#020617]/70 text-[#e2e8f0] transition-colors hover:bg-[#0f172a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#93c5fd]/80"
-                    aria-label="Show next screenshot"
+                    aria-label="Tampilkan tangkapan layar berikutnya"
                   >
                     <svg
                       width="20"
@@ -623,14 +623,14 @@ export default function CaseStudyPage() {
 
               <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-white/15 bg-[#0f172a]/70 px-4 py-3 text-sm text-[#cbd5e1] backdrop-blur-xl">
                 <p>
-                  {project.title} - screenshot {activeImageIndex + 1} of{' '}
+                  {project.title} - tangkapan layar {activeImageIndex + 1} dari{' '}
                   {galleryImages.length}
                 </p>
                 <p className="max-w-2xl text-sm text-[#cbd5e1]">
                   {activeImage.caption}
                 </p>
                 <p className="text-xs uppercase tracking-[0.12em] text-[#93c5fd]">
-                  Use arrows or Esc to close
+                  Gunakan panah atau Esc untuk menutup
                 </p>
               </div>
             </motion.div>

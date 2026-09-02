@@ -5,23 +5,23 @@ import { motion } from 'framer-motion'
 const achievements = [
   {
     metric: '5+',
-    label: 'Production web applications built',
-    description: 'Deployed and maintained in production environments',
+    label: 'Aplikasi web produksi dibangun',
+    description: 'Di-deploy dan dirawat di lingkungan produksi',
   },
   {
     metric: '60%',
-    label: 'Reduction in processing time',
-    description: 'Achieved through system optimization and automation',
+    label: 'Pengurangan waktu pemrosesan',
+    description: 'Dicapai melalui optimalisasi sistem dan otomatisasi',
   },
   {
     metric: '500+',
-    label: 'Active users',
-    description: 'Real users relying on systems I built daily',
+    label: 'Pengguna aktif',
+    description: 'Pengguna nyata yang mengandalkan sistem buatan saya setiap hari',
   },
   {
     metric: '95%',
-    label: 'Project delivery rate',
-    description: 'Successfully delivered all projects on time',
+    label: 'Tingkat penyelesaian proyek',
+    description: 'Seluruh proyek berhasil diselesaikan tepat waktu',
   },
 ]
 
@@ -43,13 +43,13 @@ export default function Achievements() {
           className="mb-16"
         >
           <p className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-[#a5b4fc] backdrop-blur-xl">
-            Performance Snapshot
+            Ringkasan Kinerja
           </p>
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-[#f8fafc] md:text-4xl">
-            Impact & Results
+            Dampak & Hasil
           </h2>
           <p className="max-w-3xl text-lg leading-relaxed text-[#cbd5e1]">
-            Measurable outcomes from solving real operational problems.
+            Hasil terukur dari menyelesaikan masalah operasional nyata.
           </p>
         </motion.div>
 
@@ -64,7 +64,7 @@ export default function Achievements() {
               className="group rounded-2xl border border-white/15 bg-white/10 p-6 text-center backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_20px_60px_rgba(15,23,42,0.4)]"
             >
               <p className="mb-2 font-mono text-xs uppercase tracking-[0.15em] text-[#94a3b8]">
-                Metric 0{index + 1}
+                Metrik 0{index + 1}
               </p>
               <div className="mb-2 text-4xl font-bold tracking-tight text-[#93c5fd] md:text-5xl">
                 {achievement.metric}

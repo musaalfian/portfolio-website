@@ -21,11 +21,11 @@ export default function ProjectsPage() {
           className="mb-16"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-[#f8fafc] mb-4 tracking-tight">
-            Selected Work
+            Karya Pilihan
           </h1>
           <p className="text-lg text-[#94a3b8] max-w-2xl">
-            A collection of projects that demonstrate engineering thinking,
-            problem-solving, and real-world impact.
+            Kumpulan proyek yang menunjukkan cara berpikir rekayasa, pemecahan
+            masalah, dan dampak nyata di lapangan.
           </p>
         </motion.div>
 

@@ -5,10 +5,10 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { href: '/#work', label: 'Work' },
-  { href: '/#notes', label: 'Notes' },
-  { href: '/#stack', label: 'Stack' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/#work', label: 'Karya' },
+  { href: '/#notes', label: 'Catatan' },
+  { href: '/#stack', label: 'Teknologi' },
+  { href: '/#contact', label: 'Kontak' },
 ]
 
 export default function Header() {
@@ -59,7 +59,7 @@ export default function Header() {
           <button
             className="relative rounded-lg border border-white/15 bg-white/5 p-2 text-[#f8fafc] transition-colors hover:bg-white/10 md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
+            aria-label="Buka/tutup menu"
             aria-expanded={isMobileMenuOpen}
           >
             <svg

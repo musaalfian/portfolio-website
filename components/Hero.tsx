@@ -56,21 +56,21 @@ export default function Hero() {
             variants={itemVariants}
             className="mb-6 text-4xl leading-tight tracking-tight text-[#f8fafc] md:text-6xl lg:text-7xl"
           >
-            Building
+            Membangun
             <span className="bg-linear-to-r from-[#67e8f9] via-[#a5b4fc] to-[#34d399] bg-clip-text text-transparent">
               {' '}
-              elegant digital products
+              produk digital yang elegan
             </span>{' '}
-            for real operational impact.
+            untuk dampak operasional nyata.
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
             className="mb-10 max-w-2xl text-lg leading-relaxed text-[#cbd5e1] md:text-xl"
           >
-            I craft reliable web platforms across React, Next.js, and Laravel
-            with strong focus on system reliability, maintainable architecture,
-            and production-ready delivery.
+            Saya membangun platform web yang andal dengan React, Next.js, dan
+            Laravel, dengan fokus kuat pada keandalan sistem, arsitektur yang
+            mudah dirawat, dan pengiriman yang siap produksi.
           </motion.p>
 
           <motion.div
@@ -83,7 +83,7 @@ export default function Hero() {
             >
               <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(118deg,rgba(255,255,255,0.26)_0%,rgba(255,255,255,0.08)_42%,transparent_72%)] opacity-75 transition-opacity duration-300 group-hover:opacity-100" />
               <span className="relative z-10 inline-flex items-center gap-2">
-                View My Work
+                Lihat Karya Saya
                 <svg
                   width="16"
                   height="16"
@@ -101,7 +101,7 @@ export default function Hero() {
               href="#notes"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-6 py-3 font-medium text-[#f8fafc] backdrop-blur-xl transition-all duration-300 hover:bg-white/15"
             >
-              Read Case Studies
+              Baca Studi Kasus
             </Link>
           </motion.div>
         </motion.div>
@@ -120,7 +120,7 @@ export default function Hero() {
           <div className="relative rounded-3xl border border-white/20 bg-white/10 p-6 shadow-[0_18px_80px_rgba(15,23,42,0.5)] backdrop-blur-2xl md:p-8">
             <div className="mb-6 flex items-center justify-between">
               <p className="text-sm font-medium tracking-wide text-[#e2e8f0]">
-                Current Focus
+                Fokus Saat Ini
               </p>
               <span className="rounded-full border border-emerald-300/40 bg-emerald-300/20 px-3 py-1 text-xs text-emerald-100">
                 <div className="flex items-center gap-2">
@@ -139,7 +139,7 @@ export default function Hero() {
                       <circle cx="4" cy="4" r="4" />
                     </svg>
                   </motion.span>
-                  Available for Projects
+                  Terbuka untuk Proyek
                 </div>
               </span>
             </div>
@@ -147,18 +147,18 @@ export default function Hero() {
             <div className="space-y-4">
               {[
                 {
-                  title: 'Frontend Experience',
+                  title: 'Pengalaman Frontend',
                   value: 'React + Next.js',
                   accent: 'from-[#38bdf8] to-[#6366f1]',
                 },
                 {
-                  title: 'Backend Foundation',
-                  value: 'Laravel + API Design',
+                  title: 'Fondasi Backend',
+                  value: 'Laravel + Desain API',
                   accent: 'from-[#6366f1] to-[#22c55e]',
                 },
                 {
-                  title: 'Engineering Direction',
-                  value: 'Reliability + Scale',
+                  title: 'Arah Rekayasa',
+                  value: 'Keandalan + Skalabilitas',
                   accent: 'from-[#22c55e] to-[#38bdf8]',
                 },
               ].map((item) => (

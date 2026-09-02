@@ -37,9 +37,9 @@ export default function Footer() {
                 Musa Alfian
               </p>
               <p className="max-w-xl text-sm leading-relaxed text-[#cbd5e1] md:text-base">
-                Fullstack engineer focused on reliable delivery, thoughtful
-                architecture, and real product outcomes in React, Next.js, and
-                Laravel environments.
+                Fullstack engineer yang fokus pada pengiriman yang andal,
+                arsitektur yang matang, dan hasil produk nyata di lingkungan
+                React, Next.js, dan Laravel.
               </p>
             </div>
 
@@ -71,7 +71,7 @@ export default function Footer() {
               href="/build-log"
               className="inline-flex w-fit items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-4 py-2 text-sm text-[#e2e8f0] transition-all duration-200 hover:bg-white/10"
             >
-              View Build Log
+              Lihat Catatan Pembangunan
               <svg
                 width="14"
                 height="14"
@@ -96,8 +96,8 @@ export default function Footer() {
 
         <div className="mt-6 text-center text-sm text-[#64748b] md:text-right">
           <p>
-            &copy; {new Date().getFullYear()} Musa Alfian. Built with
-            engineering thinking.
+            &copy; {new Date().getFullYear()} Musa Alfian. Dibangun dengan
+            pola pikir rekayasa.
           </p>
         </div>
       </div>

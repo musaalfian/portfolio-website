@@ -4,49 +4,49 @@ import { motion } from 'framer-motion'
 
 const buildLogSections = [
   {
-    title: 'Architecture Decisions',
+    title: 'Keputusan Arsitektur',
     content: [
-      'Used Next.js App Router for modern routing and server components',
-      'Static generation (SSG) for all pages to ensure optimal performance',
-      'Component-based architecture with clear separation of concerns',
-      'TypeScript for type safety across the entire codebase',
+      'Menggunakan Next.js App Router untuk routing modern dan server components',
+      'Static generation (SSG) untuk seluruh halaman demi performa optimal',
+      'Arsitektur berbasis komponen dengan pemisahan tanggung jawab yang jelas',
+      'TypeScript untuk keamanan tipe di seluruh basis kode',
     ],
   },
   {
-    title: 'Component Structure',
+    title: 'Struktur Komponen',
     content: [
-      'Reusable components in /components directory',
-      'Data layer separated in /lib/data.ts for easy content management',
-      'Client components used only where interactivity is needed',
-      'Server components by default for better performance',
+      'Komponen yang dapat digunakan ulang berada di direktori /components',
+      'Lapisan data dipisah di /lib/data.ts agar pengelolaan konten lebih mudah',
+      'Client component hanya dipakai di bagian yang membutuhkan interaktivitas',
+      'Server component sebagai default untuk performa yang lebih baik',
     ],
   },
   {
-    title: 'Performance Optimizations',
+    title: 'Optimalisasi Performa',
     content: [
-      'Static site generation for all pages - no server-side rendering needed',
-      'Next.js Image component for optimized image loading',
-      'Font optimization with next/font for minimal layout shift',
-      'Code splitting per route for minimal JavaScript bundle size',
-      'Framer Motion used with optimized settings (useMotionValue, useTransform)',
+      'Static site generation untuk semua halaman - tanpa server-side rendering',
+      'Komponen Next.js Image untuk pemuatan gambar yang teroptimasi',
+      'Optimalisasi font dengan next/font untuk meminimalkan layout shift',
+      'Code splitting per rute untuk ukuran bundle JavaScript seminimal mungkin',
+      'Framer Motion digunakan dengan pengaturan teroptimasi (useMotionValue, useTransform)',
     ],
   },
   {
-    title: 'Styling Approach',
+    title: 'Pendekatan Styling',
     content: [
-      'Tailwind CSS for utility-first styling',
-      'Custom CSS variables for consistent theming',
-      'Dark theme as default with careful color contrast',
-      'Responsive design with mobile-first approach',
+      'Tailwind CSS untuk styling berbasis utility',
+      'Variabel CSS kustom untuk tema yang konsisten',
+      'Tema gelap sebagai default dengan kontras warna yang diperhatikan',
+      'Desain responsif dengan pendekatan mobile-first',
     ],
   },
   {
-    title: 'Deployment Pipeline',
+    title: 'Alur Deployment',
     content: [
-      'Ready for Vercel deployment with zero configuration',
-      'Environment variables configured for production',
-      'Automatic CI/CD through Vercel Git integration',
-      'Edge caching enabled for global performance',
+      'Siap di-deploy ke Vercel tanpa konfigurasi tambahan',
+      'Variabel environment dikonfigurasi untuk produksi',
+      'CI/CD otomatis melalui integrasi Git Vercel',
+      'Edge caching diaktifkan untuk performa global',
     ],
   },
 ]
@@ -66,14 +66,14 @@ export default function BuildLogPage() {
           className="mb-16"
         >
           <span className="text-sm font-mono text-[#6366f1] uppercase tracking-wider">
-            Behind the Scenes
+            Di Balik Layar
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-[#f8fafc] mt-4 mb-6 tracking-tight">
-            Build Log
+            Catatan Pembangunan
           </h1>
           <p className="text-xl text-[#94a3b8] leading-relaxed">
-            How this portfolio was built, demonstrating engineering transparency
-            and technical depth.
+            Bagaimana portofolio ini dibangun, sebagai bentuk transparansi
+            rekayasa dan kedalaman teknis.
           </p>
         </motion.div>
 
@@ -125,7 +125,7 @@ export default function BuildLogPage() {
           className="mt-16 p-6 bg-[#1e293b] rounded-xl border border-[#334155]"
         >
           <h3 className="text-lg font-semibold text-[#f8fafc] mb-4">
-            Tech Stack
+            Teknologi yang Digunakan
           </h3>
           <div className="flex flex-wrap gap-3">
             {[

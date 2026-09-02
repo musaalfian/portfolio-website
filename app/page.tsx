@@ -39,14 +39,14 @@ export default function Home() {
             className="mb-16"
           >
             <p className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-[#93c5fd] backdrop-blur-xl">
-              Featured Projects
+              Proyek Unggulan
             </p>
             <h2 className="mb-4 text-3xl font-bold tracking-tight text-[#f8fafc] md:text-4xl">
-              Selected Work
+              Karya Pilihan
             </h2>
             <p className="max-w-3xl text-lg leading-relaxed text-[#cbd5e1]">
-              Project portfolio with measurable impact, strong architecture
-              decisions, and production-focused execution.
+              Portofolio proyek dengan dampak terukur, keputusan arsitektur yang
+              matang, dan eksekusi yang berorientasi produksi.
             </p>
           </motion.div>
 
